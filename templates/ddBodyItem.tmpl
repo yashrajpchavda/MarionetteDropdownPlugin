@@ -1,0 +1,13 @@
+<span class="checkC"><i class="fa fa-check"></i></span>
+<% if ( config && config.escapeHtmlInItems ) { %>
+<span class="iTxt"><%= _.escape( text ) %></span>
+<% } else { %>
+<span class="iTxt"><%= text %></span>
+<% } %>
+<% if ( typeof actions !== 'undefined' && actions && actions.length > 0 ) { %>
+    <% _.each( actions, function( actionItem ) { %>
+
+        <span class="ddActItem" data-item-key="<%= actionItem.key %>" title="<%= actionItem.tooltipText %>" ><i class="<%= actionItem.cssClass + ' ' + actionItem.key %> "></i></span>
+
+    <% } ); %>
+<% } %>

@@ -1,0 +1,11 @@
+{
+    "name": "The Dropdown API",
+    "description": "A dropdown plugin created using Marionette / Backbone.",
+    "version": "1.0.0",
+    "url": "",
+    "options": {
+        "linkNatives": "true",
+        "paths": "*/js",
+        "tabtospace": 4
+    }
+}

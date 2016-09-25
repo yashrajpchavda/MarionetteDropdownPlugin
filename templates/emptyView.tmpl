@@ -1,0 +1,9 @@
+<%
+
+if ( config.allowNew ) {
+    %><span class="iTxt addNewItem"><%= config.allowNewText || 'Add as New Item' %></span><%
+} else {
+    %><span class="iTxt noItem"><%= config.noDataMessage || 'No data found' %></span><%
+}
+
+%>

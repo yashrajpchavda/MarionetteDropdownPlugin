@@ -1,0 +1,244 @@
+.ddC {
+    position: relative;
+}
+
+.ddC .ddBC {
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+    z-index: 10;
+}
+
+.ddC .hC {
+    border: none;
+    position: relative;
+}
+
+.ddC .hC.mSel {
+    padding: 2px 5px 2px 5px;
+    border: none;
+    border-bottom: 2px solid #d6d6d6;
+}
+
+.ddC .hC .inputC {
+    position: relative;
+    width: 100%;
+}
+
+.ddC .hC .ddInput {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px 20px 4px 5px;
+    outline: none;
+    white-space: normal;
+    text-overflow: ellipsis;
+    border: none;
+    border-bottom: 2px solid #CCC !important;
+    border-radius: 0;
+}
+
+.ddC .hC .tagList.withClear .ddInput{
+    padding-right: 40px;
+}
+
+.ddC .hC .ddInput::-webkit-input-placeholder { font-style: italic; }
+.ddC .hC .ddInput::-moz-placeholder { font-style: italic; }
+.ddC .hC .ddInput:-ms-input-placeholder { font-style: italic; }
+
+.ddC .hC .ddInputAction {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform:    translateY(-50%);
+    -ms-transform:     translateY(-50%);
+    -o-transform:      translateY(-50%);
+    transform:         translateY(-50%);
+    padding: 0 8px;
+    height: 23px;
+    width: 22px;
+    font-size: 14px
+}
+.ddC .hC .ddInputAction:hover {
+    cursor: pointer;
+}
+.ddC.disableDD .hC .ddInputAction:hover {
+    cursor: default;
+}
+
+.ddC .hC .ddClear {
+    position: absolute;
+    right: 20px;
+    font-size: 13px;
+    color: #777;
+}
+
+.ddC .hC .ddClear .fa {
+
+}
+
+.ddC .hC .ddListToggle {
+    /*background-color: #ddd;*/
+    height: auto;
+    right: 1px;
+    -webkit-transform: translateY(-55%);
+    -moz-transform:    translateY(-55%);
+    -ms-transform:     translateY(-55%);
+    -o-transform:      translateY(-55%);
+    transform:         translateY(-55%);
+}
+
+.ddC .hC .ddListToggle .fa {
+    margin: 0;
+}
+
+.ddC .hC .searchIco {
+    display: none;
+}
+
+.ddC .hC .selectedC {
+    display: block;
+}
+
+.ddC .hC.mSel .searchIco {
+    position: absolute;
+    padding: 3px 6px 1px 3px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+}
+
+.ddC .hC.mSel .selectedC {
+    display: inline-block;
+    margin: 0 0 0 23px;
+}
+
+.ddC .selectedC .tagList {
+    padding: 2px 0 0;
+}
+
+.ddC .hC .selectedC .tagsC {
+    display: none;
+}
+
+.ddC .hC.mSel .selectedC .tagsC {
+    display: inline;
+    /* float: left; */
+}
+
+.ddC .selectedC .tagItem {
+    display: inline-flex;
+    margin: 0px 6px 5px 0;
+    border: 1px solid #ccc;
+    padding: 1px 4px 1px 5px;
+    border-radius: 3px;
+    background-color: #eee;
+    /* float: left; */
+}
+
+.ddC .selectedC .tagItem span {
+    font-size: 12px;
+}
+
+.ddC .selectedC .tagItem .removeIco {
+    padding-left: 3px;
+    color: #777;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.ddC .hC.mSel .inputC {
+    position: relative;
+    width: 140px;
+    display: inline-block;
+}
+
+.ddC .hC.mSel .ddInput {
+    border: none !important;
+    /* float: left; */
+    background: transparent;
+    padding: 1px 30px 2px 5px;
+    display: inline;
+}
+
+.ddC .hC.mSel .ddInputAction {
+    display: none;
+}
+
+.ddC .bV {
+    border: 2px solid #CCC;
+    /* border-top: none; */
+    display: none;
+    margin-top: -2px;
+}
+
+.ddC .bCWrap {
+    max-height: 120px;
+    overflow: auto;
+}
+
+.ddC .bC {
+    display: table;
+    border-radius: 0 0 3px 3px;
+    width: 100%;
+}
+
+.ddC .bC .bI {
+    cursor: pointer;
+    display: table-row;
+}
+
+.ddC .bC .bI .iTxt {
+    font-size: 12px;
+    padding: 3px 4px 3px 5px;
+    display: table-cell;
+    color: #222;
+}
+
+.ddC .bC .bI .ddActItem { display: table-cell; visibility: hidden; padding-right: 5px; }
+.ddC .bC .bI.hoverState .ddActItem { visibility: visible }
+
+.ddC .bC .bI .checkC {
+    padding-right: 2px;
+    padding-left: 4px;
+    width: 16px;
+    color: #BBB;
+    display: none;
+}
+
+.ddC .bC .bI.selected .checkC {
+    color: #222;
+}
+
+.ddC .bV.mSel .bC .bI .checkC {
+    display: table-cell;
+}
+
+.ddC .bC .bI.hoverState {
+    background-color: #FFFAC6;
+}
+
+.ddC .bC .bI.selected {
+    font-weight: bold;
+}
+
+.ddC .bC .bI .noItem {
+    cursor: default;
+}
+
+.ddC .footC {
+    /*padding: 4px 5px;
+    border-top: 2px solid #CCC ;*/
+}
+
+.ddC .footC .footer-item { display: block; padding: 4px; border-top: 1px solid #ccc; }
+
+.body180 .ddBC{
+    width: 180px;
+}
+
+.ddC.disableDD .ddInput {
+    background: #DDD;
+}
+.ddC.disableDD .inputC .ddClear {
+    display: none !important;
+}

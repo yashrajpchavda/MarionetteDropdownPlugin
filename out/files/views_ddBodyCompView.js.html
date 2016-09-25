@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>views/ddBodyCompView.js - The Dropdown API</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="The Dropdown API" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                            </ul>
+
+
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+
+                </div>
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: views/ddBodyCompView.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * Created by Yashraj.C on 12/4/2015.
+ */
+
+define( [
+    &#x27;jquery&#x27;,
+    &#x27;underscore&#x27;,
+    &#x27;backbone&#x27;,
+    &#x27;marionette&#x27;,
+    &#x27;tpl!modules/dropdown2/templates/ddBodyComp.tmpl&#x27;,
+    &#x27;modules/dropdown2/views/ddBodyItemView&#x27;,
+    &#x27;modules/dropdown2/views/ddBodyEmptyView&#x27;,
+    &#x27;modules/dropdown2/collections/bodyItemsCollection&#x27;,
+    &#x27;modules/ajaxLoader/ajaxLoader&#x27;
+], function ( $, _, Backbone, Marionette, dropdownBodyTemplate, DropdownBodyItemView, DropdownBodyEmptyView,
+              DropdownBodyItemsCollection, AjaxLoader ) {
+
+    return Marionette.CompositeView.extend( {
+
+        childView: DropdownBodyItemView,
+        childViewContainer: &#x27;.bC&#x27;,
+
+        emptyView: DropdownBodyEmptyView,
+
+        template: dropdownBodyTemplate,
+
+        className: &#x27;bV user-no-select&#x27;,
+
+        collectionReset: false,
+
+        ui: {
+            bodyContainer: &#x27;.bC&#x27;,
+            footerContainer: &#x27;.footC&#x27;
+        },
+
+        tooltipOptions: {
+            animation: true,
+            container: &#x27;body&#x27;,
+            trigger: &quot;hover focus&quot;
+        },
+
+        initialize: function ( options ) {
+
+            var that = this;
+
+            this.config = {};
+
+            // extend the config
+            _.extend( this.config, options.config );
+
+            this.model = new Backbone.Model( {
+                config: this.config
+            } );
+
+            this.collection = new DropdownBodyItemsCollection( this.config.data );
+
+            this.listenTo( this.collection, &#x27;showLoader&#x27;, function () {
+                that.showLoader();
+            } );
+
+            this.listenTo( this.collection, &#x27;hideLoader&#x27;, function () {
+                that.hideLoader();
+            } );
+
+            this.eventTriggers = options.eventTriggers;
+
+            // used while triggering search, not to fire multiple requests to server
+            this.debouncedSearchHandler = _.debounce( (function ( text, selectedItems ) {
+                // show the view if not already visible
+                if ( !this.isVisible() ) {
+                    this.showView();
+                }
+
+                // filters the items in the collection based on the text
+                this.collection.filterItems( text, selectedItems, this.config, this._postProcessCollectionSearch.bind( this ) );
+            } ).bind( this ), this.config.searchTriggerDelay || 600 );
+
+        },
+
+        childViewOptions: function () {
+
+            // pass the config to the child views without data.
+            var config = $.extend( true, {}, this.config );
+            delete config.data;
+
+            return {
+                config: config
+            };
+
+        },
+
+        emptyViewOptions: function () {
+
+            // pass the config to the child views without data.
+            var config = $.extend( true, {}, this.config );
+            delete config.data;
+
+            return {
+                config: config
+            };
+
+        },
+
+        events: {
+            &#x27;click&#x27;: function ( event ) {
+                event.stopPropagation();
+            },
+//            &#x27;click @ui.footerContainer&#x27;: &#x27;handleFooterClick&#x27;,
+            &#x27;click .footer-item&#x27;: &#x27;_handleFooterItemClick&#x27;,
+            &#x27;click @ui.convertCodeFooterContainer&#x27;: &#x27;handleConvertCodeFooterClick&#x27;
+        },
+
+        childEvents: {
+            &#x27;itemClick&#x27;: &#x27;_handleBodyItemClick&#x27;,
+            &#x27;actionItemClick&#x27;: &#x27;_handleActionItemClick&#x27;,
+            &#x27;addNewItem&#x27;: &#x27;_handleAddNewItem&#x27;
+        },
+
+        onRender: function () {
+
+            var footerConfig, convertCodeFooterConfig;
+
+            if ( this.config.multiSelect === true ) {
+                this.$el.addClass( &#x27;mSel&#x27; );
+            }
+
+            footerConfig = this.config.footer;
+
+            if ( footerConfig &amp;&amp; Object.keys( footerConfig ).length !== 0 ) {
+                this._renderFooterItems();
+                /*this.ui.footerContainer
+                    .html( footerConfig.html )
+                    .show();*/
+            }
+
+            this._applyTooltipForDDItems();
+
+            /*convertCodeFooterConfig = this.config.convertCodeFooter;
+
+            if ( convertCodeFooterConfig &amp;&amp; Object.keys( convertCodeFooterConfig ).length !== 0 ) {
+                this.ui.convertCodeFooterContainer
+                    .html( convertCodeFooterConfig.html )
+                    .show();
+            }*/
+
+        },
+
+        onRenderCollection: function() {
+            this._applyTooltipForDDItems();
+        },
+
+        _applyTooltipForDDItems: function() {
+            this._applyTooltip( this.$( &#x27;.ddActItem&#x27; ) );
+        },
+
+        _applyTooltip: function ( element, options ) {
+
+            var _options = $.extend( true, options, this.tooltipOptions );
+            try {
+                element.tooltip( &#x27;destroy&#x27; );
+                element.tooltip( _options );
+            } catch ( e ) {
+                console.log( e );
+            }
+
+        },
+
+        _renderFooterItems: function() {
+
+            var footerItems = this.config.footer,
+                footerHtmlElements = [];
+
+            _.each( footerItems, function( footerItem ) {
+
+                footerHtmlElements.push(
+                    $( footerItem.html )
+                        .attr( &#x27;data-key&#x27;, footerItem.itemKey )
+                        .addClass( &#x27;footer-item&#x27; )
+                );
+
+            }, this );
+
+            this.ui.footerContainer
+                .empty()
+                .show()
+                .append( footerHtmlElements );
+
+        },
+
+        _handleFooterItemClick: function( event ) {
+
+            var $currentTarget = $( event.currentTarget ),
+                itemKey = $currentTarget.attr( &#x27;data-key&#x27; );
+
+            this.trigger( this.eventTriggers.footerClick, itemKey );
+
+        },
+
+        /**
+         * Click handler for the footer item click.
+         * Checks if the footer config was provided and if yes, triggers the click event of the footer.
+         * @param {Object} event
+         *      An event object for the handler
+         */
+        handleFooterClick: function ( event ) {
+
+            var footerConfig = this.config.footer;
+
+            if ( footerConfig &amp;&amp; Object.keys( footerConfig ).length !== 0 &amp;&amp; footerConfig.footerClick ) {
+                this.trigger( this.eventTriggers.footerClick );
+            }
+
+        },
+        /**
+         * Click handler for the footer item click.
+         * Checks if the footer config was provided and if yes, triggers the click event of the footer.
+         * @param {Object} event
+         *      An event object for the handler
+         */
+        handleConvertCodeFooterClick: function ( event ) {
+
+            var convertCodeFooterConfig = this.config.convertCodeFooter;
+
+            if ( convertCodeFooterConfig &amp;&amp; Object.keys( convertCodeFooterConfig ).length !== 0 &amp;&amp; convertCodeFooterConfig.convertCodeFooterClick ) {
+                this.trigger( this.eventTriggers.convertCodeFooterClick );
+            }
+
+        },
+
+        /**
+         * Deselects all the items in the collection.
+         */
+        deselectAll: function () {
+            this.collection.deSelectAll();
+            this.trigger( this.eventTriggers.deselectItem );
+        },
+
+        /**
+         * Handles the bodyItemClick which is triggered by the child view.
+         * Performs the selection logic for the item based on the config - multiSelect | singleSelect
+         * Triggers the event that is listened by the parent view.
+         * @param {View} itemView
+         *      A view representing the item that was clicked.
+         * @private
+         */
+        _handleBodyItemClick: function ( itemView ) {
+
+            if ( this.config.multiSelect === false ) {
+                this.deselectAll();
+                this.hideView();
+                this.collection.selectSingleSelectModel( itemView.model );
+            } else {
+                this.collection.selectMultiSelectModel( itemView.model );
+            }
+
+            this.trigger( this.eventTriggers.bodyItemClick, itemView );
+
+        },
+
+        /**
+         * Handles the child event triggered by the action item click.
+         * Invokes the action item click callback specified in the configuration.
+         * @param {View} view
+         *      Item view which triggered the event.
+         * @param {Model} itemModel
+         *      Model representing the view that triggered the event.
+         * @param {Object} itemConfig
+         *      Object representing the item action that was clicked.
+         * @private
+         */
+        _handleActionItemClick: function( view, itemModel, itemConfig ) {
+            var actionItemClick = this.config &amp;&amp; this.config.onActionItemClick;
+
+            actionItemClick.call( null, itemModel, itemConfig );
+        },
+
+        /**
+         * Handles the add new item event that gets triggered by the child view.
+         * Triggers the event that is listened by the parent view to act on the same.
+         * @private
+         */
+        _handleAddNewItem: function () {
+            this.trigger( this.eventTriggers.addNewItem );
+        },
+
+        /**
+         * Filters the results in the collection based on the text that is passed to the view.
+         * @param {String} text
+         *      A string used to filter the items in the collection.
+         * @param {Array} selectedItems
+         *      An array of selected items to highlight the newly returned items by the server.
+         */
+        filterResults: function ( text, selectedItems ) {
+
+            this.debouncedSearchHandler( text, selectedItems );
+
+        },
+
+        /**
+         * Shows the loader in the view.
+         */
+        showLoader: function () {
+            AjaxLoader.showMask( {
+                container: this.$el
+            } );
+        },
+
+        /**
+         * Hides the loader in the view.
+         */
+        hideLoader: function () {
+            AjaxLoader.hideMask( {
+                container: this.$el
+            } );
+        },
+
+        /**
+         * A handler that gets passed to the filter item method of the collection
+         * to be invoked whenever the data in the collection has been refreshed based on
+         * whatever user has typed
+         * @private
+         */
+        _postProcessCollectionSearch: function () {
+
+            // find the visible items
+            var visibleItems = this.collection.where( {
+                visible: true
+            } );
+
+            // reset the collection if visible items are zero - to show the empty view
+            if ( visibleItems.length === 0 ) {
+                this.collectionReset = true;
+                this.collection.trigger( &#x27;reset&#x27; );
+            } else if ( this.collectionReset ) {
+                // if the collection was reset, only then the below code should be executed
+                this.collection.reset( this.collection.toJSON() );
+                this.collectionReset = false;
+            }
+
+        },
+
+        /**
+         * Returns true of false based on the visible items present in the collection.
+         * @param {Collection} collection
+         *      A collection whose items should be verified.
+         * @returns {boolean}
+         */
+        isEmpty: function ( collection ) {
+
+            return collection.where( {
+                visible: true
+            } ).length === 0;
+
+        },
+
+        /**
+         * Traverses through the list based on the keyCode number that is passed.
+         * Preforms various logic based on the key that was pressed.
+         * For the navigation in the list keys, highlights and scrolls to the items that should be shown
+         * as selected.
+         * @param {Number} keyCode
+         *      A number indicating the key that was pressed.
+         */
+        traverseListOrSelectItem: function ( keyCode ) {
+
+            var hoverClass = &#x27;hoverState&#x27;,
+                currentHighlight,
+                itemToHighlight,
+                $prevElement,
+                $nextElement;
+
+            if ( !this.isVisible() ) {
+                this.showView();
+            }
+
+            currentHighlight = this.$( &#x27;.&#x27; + hoverClass );
+
+            if ( keyCode === $.ui.keyCode.ENTER ) {
+
+                if ( currentHighlight.length &gt; 0 ) {
+                    currentHighlight.trigger( &#x27;click&#x27; );
+                }
+
+                return;
+
+            } else if ( keyCode === $.ui.keyCode.UP ) {
+
+                if ( currentHighlight.length === 0 ) {
+                    itemToHighlight = this.$( &#x27;.bI:visible&#x27; ).last();
+                } else {
+
+                    $prevElement = currentHighlight.prevAll( &#x27;:visible:first&#x27; );
+
+                    if ( $prevElement.length === 0 ) {
+                        itemToHighlight = this.$( &#x27;.bI:visible&#x27; ).last();
+                    } else {
+                        itemToHighlight = $prevElement;
+                    }
+                }
+
+            } else if ( keyCode === $.ui.keyCode.DOWN ) {
+
+                if ( currentHighlight.length === 0 ) {
+                    itemToHighlight = this.$( &#x27;.bI:visible&#x27; ).first();
+                } else {
+
+                    $nextElement = currentHighlight.nextAll( &#x27;:visible:first&#x27; );
+
+                    if ( $nextElement.length === 0 ) {
+                        itemToHighlight = this.$( &#x27;.bI:visible&#x27; ).first();
+                    } else {
+                        itemToHighlight = $nextElement;
+                    }
+                }
+
+            }
+
+            currentHighlight.removeClass( hoverClass );
+            itemToHighlight.addClass( hoverClass );
+            this._scrollToItem( itemToHighlight );
+
+        },
+
+        /**
+         * Deselects the item in the collection that is passed.
+         * @param {Model} removedModel
+         *      A model that should be deselected.
+         */
+        deselectItem: function ( removedModel ) {
+            this.collection.deSelectItem( removedModel );
+        },
+
+        /**
+         * Selects the item in the collection that is passed.
+         * @param {Model} model
+         *      A model that should be deselected.
+         */
+        selectItem: function ( model ) {
+            this.collection.selectItem( model );
+        },
+
+        /**
+         * Returns the visibility of the view.
+         * @returns {boolean}
+         */
+        isVisible: function () {
+            return this.$el.is( &#x27;:visible&#x27; );
+        },
+
+        /**
+         * Shows the list view. Binds the event to hide the view if user clicks anywhere else.
+         */
+        showView: function () {
+
+            if ( !this.isVisible() ) {
+
+                // commented the code below as it was resetting the view when user has typed something for the search
+                // and the dropdown is toggled
+                /*if ( this.config.multiSelect === false ) {
+                    this.collection.showAllItems();
+                }*/
+
+                this.$el.show();
+
+                setTimeout( this._bindHideEvent.bind( this ), 0 );
+
+            }
+
+        },
+
+        /**
+         * Hides the view and unbinds the events that were bound while showing the view.
+         */
+        hideView: function () {
+            this.$el.hide();
+            this._unbindHideEvent();
+        },
+
+        /**
+         * Binds the hide events to hide the dropdown list whenever user clicks somewhere else.
+         * @private
+         */
+        _bindHideEvent: function () {
+
+            var that = this;
+
+            $( document ).on( &#x27;click.hideDD&#x27;, function () {
+                that.hideView();
+            } );
+
+        },
+
+        /**
+         * Unbinds the event that was bound on the document while showing the list.
+         * @private
+         */
+        _unbindHideEvent: function () {
+            $( document ).off( &#x27;click.hideDD&#x27; );
+        },
+
+        /**
+         * Scrolls to the items that should be shown as highlighted whenever user is traversing
+         * in the list.
+         * @param {Model} item
+         *      A model representing the item where the view should be scrolled.
+         * @private
+         */
+        _scrollToItem: function ( item ) {
+
+            var containerHeight,
+                itemTop,
+                $scrollContainerEl = this.$el.find( &#x27;.bCWrap&#x27; );
+
+            if ( !item ) {
+                item = this.$( &#x27;.hoverState&#x27; );
+            }
+
+            if ( item.length !== 0 ) {
+
+                itemTop = item.position().top;
+                containerHeight = $scrollContainerEl.height();
+
+                var top = $scrollContainerEl.scrollTop() + itemTop - containerHeight + item.height();
+
+                if ( top &lt;= 0 ) {
+                    $scrollContainerEl.scrollTop( 0 );
+                } else if ( ( $scrollContainerEl.scrollTop() + itemTop ) &gt;= containerHeight ) {
+                    $scrollContainerEl.scrollTop( top );
+                }
+
+            }
+
+        },
+
+        getVisibleItems: function() {
+            return this.collection.getVisibleItems();
+        },
+
+        /**
+         * Deselects all the items in the collection.
+         */
+        clearView: function () {
+            if ( this.config &amp;&amp; this.config.ajax ) {
+                this.collection.reset();
+            } else {
+                this.collection.deSelectAll();
+            }
+        },
+
+        disableView : function () {
+            this.undelegateEvents();
+        },
+
+        enableView : function () {
+            this.delegateEvents();
+        },
+
+        resetDataSource: function(data) {
+            this.collection.reset(data);
+        },
+
+        onDestroy: function () {
+            this.stopListening( this.collection );
+        }
+
+    } );
+
+} );
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
