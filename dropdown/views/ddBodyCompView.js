@@ -1,5 +1,11 @@
 /**
- * Created by Yashraj.C on 12/4/2015.
+ * The composite body view for the dropdown items, used to render the items in the dropdown list view.  Responsible for
+ * various things like, refreshing the items as and when user types. Uses `{{#crossLink "DropdownBodyItemView"}}{{/crossLink}}`
+ * as a `childView` and `{{#crossLink "DropdownBodyItemsCollection"}}{{/crossLink}}` as a `collection` for the view.
+ *
+ * @class DropdownBodyView
+ * @extends Marionette.CompositeView
+ * @constructor
  */
 
 define( [
@@ -15,22 +21,13 @@ define( [
 ], function ( $, _, Backbone, Marionette, dropdownBodyTemplate, DropdownBodyItemView, DropdownBodyEmptyView,
               DropdownBodyItemsCollection, AjaxLoader ) {
 
-    return Marionette.CompositeView.extend( {
-
-        childView: DropdownBodyItemView,
-        childViewContainer: '.bC',
-
-        emptyView: DropdownBodyEmptyView,
-
-        template: dropdownBodyTemplate,
-
-        className: 'bV user-no-select',
-
-        collectionReset: false,
-
-        constants : {
-            keyCode   : {
-                BACKSPACE : 8,
+    /**
+     * A constant for the keycodes used in the view.
+     * @type {Object}
+     */
+    var constants = {
+        keyCode   : {
+            BACKSPACE : 8,
                 COMMA     : 188,
                 DELETE    : 46,
                 DOWN      : 40,
@@ -46,14 +43,37 @@ define( [
                 SPACE     : 32,
                 TAB       : 9,
                 UP        : 38
-            }
-        },
+        }
+    };
+
+    return Marionette.CompositeView.extend( {
+
+        childView: DropdownBodyItemView,
+        childViewContainer: '.bC',
+
+        emptyView: DropdownBodyEmptyView,
+
+        template: dropdownBodyTemplate,
+
+        className: 'bV user-no-select',
+
+        /**
+         * A property used to decide whether to reset the collection or not.
+         * @property collectionReset
+         * @type {Boolean}
+         */
+        collectionReset: false,
 
         ui: {
             bodyContainer: '.bC',
             footerContainer: '.footC'
         },
 
+        /**
+         * A config used to apply the tooltip to the items of the dropdown.
+         * @property tooltipOptions
+         * @type {Object}
+         */
         tooltipOptions: {
             animation: true,
             container: 'body',
@@ -128,7 +148,7 @@ define( [
             },
 //            'click @ui.footerContainer': 'handleFooterClick',
             'click .footer-item': '_handleFooterItemClick',
-            'click @ui.convertCodeFooterContainer': 'handleConvertCodeFooterClick'
+            'click @ui.convertCodeFooterContainer': '_handleConvertCodeFooterClick'
         },
 
         childEvents: {
@@ -147,6 +167,7 @@ define( [
 
             footerConfig = this.config.footer;
 
+            // render footer related things if present in config
             if ( footerConfig && Object.keys( footerConfig ).length !== 0 ) {
                 this._renderFooterItems();
                 /*this.ui.footerContainer
@@ -166,14 +187,38 @@ define( [
 
         },
 
+        /**
+         * For a composite view, only when the collection is re-rendered, apply the tooltip to the items
+         */
         onRenderCollection: function() {
             this._applyTooltipForDDItems();
         },
 
+        /**
+         * A method to apply the tooltip to the items of the dropdown.
+         *
+         * @method _applyTooltipForDDItems
+         *
+         * @private
+         */
         _applyTooltipForDDItems: function() {
             this._applyTooltip( this.$( '.ddActItem' ) );
         },
 
+
+        /**
+         * A method to apply the tooltip to the passed element with specified options.
+         * It destroys the existing tooltip first and then applies the new one.
+         *
+         * @method _applyTooltip
+         *
+         * @param {jQuery} element
+         *      A jquery object whom we want to apply tooltip
+         * @param {Object} [options]
+         *      An options hash to be passed to the tooltip function
+         *
+         * @private
+         */
         _applyTooltip: function ( element, options ) {
 
             var _options = $.extend( true, options, this.tooltipOptions );
@@ -186,6 +231,13 @@ define( [
 
         },
 
+        /**
+         * A method that iterates through the items specified in footer config and renders the html for the same.
+         *
+         * @method _renderFooterItems
+         *
+         * @private
+         */
         _renderFooterItems: function() {
 
             var footerItems = this.config.footer,
@@ -208,6 +260,17 @@ define( [
 
         },
 
+        /**
+         * Handles the click event performed on the footer item. Triggers the event to the parent view with `itemKey` as
+         * a parameter.
+         *
+         * @method _handleFooterItemClick
+         *
+         * @param {object} event
+         *      Event object.
+         *
+         * @private
+         */
         _handleFooterItemClick: function( event ) {
 
             var $currentTarget = $( event.currentTarget ),
@@ -223,22 +286,7 @@ define( [
          * @param {Object} event
          *      An event object for the handler
          */
-        handleFooterClick: function ( event ) {
-
-            var footerConfig = this.config.footer;
-
-            if ( footerConfig && Object.keys( footerConfig ).length !== 0 && footerConfig.footerClick ) {
-                this.trigger( this.eventTriggers.footerClick );
-            }
-
-        },
-        /**
-         * Click handler for the footer item click.
-         * Checks if the footer config was provided and if yes, triggers the click event of the footer.
-         * @param {Object} event
-         *      An event object for the handler
-         */
-        handleConvertCodeFooterClick: function ( event ) {
+        _handleConvertCodeFooterClick: function ( event ) {
 
             var convertCodeFooterConfig = this.config.convertCodeFooter;
 
@@ -250,6 +298,9 @@ define( [
 
         /**
          * Deselects all the items in the collection.
+         *
+         * @method deselectAll
+         *
          */
         deselectAll: function () {
             this.collection.deSelectAll();
@@ -260,6 +311,9 @@ define( [
          * Handles the bodyItemClick which is triggered by the child view.
          * Performs the selection logic for the item based on the config - multiSelect | singleSelect
          * Triggers the event that is listened by the parent view.
+         *
+         * @method _handleBodyItemClick
+         *
          * @param {View} itemView
          *      A view representing the item that was clicked.
          * @private
@@ -281,6 +335,9 @@ define( [
         /**
          * Handles the child event triggered by the action item click.
          * Invokes the action item click callback specified in the configuration.
+         *
+         * @method _handleActionItemClick
+         *
          * @param {View} view
          *      Item view which triggered the event.
          * @param {Model} itemModel
@@ -298,6 +355,9 @@ define( [
         /**
          * Handles the add new item event that gets triggered by the child view.
          * Triggers the event that is listened by the parent view to act on the same.
+         *
+         * @method _handleAddNewItem
+         *
          * @private
          */
         _handleAddNewItem: function () {
@@ -305,7 +365,11 @@ define( [
         },
 
         /**
-         * Filters the results in the collection based on the text that is passed to the view.
+         * Filters the results in the collection based on the text that is passed to the view. Invokes the debounced
+         * search handler so that we don't keep searching every time but the last debounced call.
+         *
+         * @method filterResults
+         *
          * @param {String} text
          *      A string used to filter the items in the collection.
          * @param {Array} selectedItems
@@ -319,6 +383,9 @@ define( [
 
         /**
          * Shows the loader in the view.
+         *
+         * @method showLoader
+         *
          */
         showLoader: function () {
             AjaxLoader.showMask( {
@@ -328,6 +395,9 @@ define( [
 
         /**
          * Hides the loader in the view.
+         *
+         * @method hideLoader
+         *
          */
         hideLoader: function () {
             AjaxLoader.hideMask( {
@@ -339,6 +409,9 @@ define( [
          * A handler that gets passed to the filter item method of the collection
          * to be invoked whenever the data in the collection has been refreshed based on
          * whatever user has typed
+         *
+         * @method _postProcessCollectionSearch
+         *
          * @private
          */
         _postProcessCollectionSearch: function () {
@@ -362,6 +435,9 @@ define( [
 
         /**
          * Returns true of false based on the visible items present in the collection.
+         *
+         * @method isEmpty
+         *
          * @param {Collection} collection
          *      A collection whose items should be verified.
          * @returns {boolean}
@@ -376,9 +452,12 @@ define( [
 
         /**
          * Traverses through the list based on the keyCode number that is passed.
-         * Preforms various logic based on the key that was pressed.
-         * For the navigation in the list keys, highlights and scrolls to the items that should be shown
-         * as selected.
+         * Preforms following things based on the keys:
+         * * **ENTER**: Selects the current highlighted item. Fires the click event on the same to select it.
+         * * **UP / DOWN**: Navigates in the list based on keys, cycles through the items.
+         *
+         * @method traverseListOrSelectItem
+         *
          * @param {Number} keyCode
          *      A number indicating the key that was pressed.
          */
@@ -396,7 +475,7 @@ define( [
 
             currentHighlight = this.$( '.' + hoverClass );
 
-            if ( keyCode === this.constants.keyCode.ENTER ) {
+            if ( keyCode === constants.keyCode.ENTER ) {
 
                 if ( currentHighlight.length > 0 ) {
                     currentHighlight.trigger( 'click' );
@@ -404,7 +483,7 @@ define( [
 
                 return;
 
-            } else if ( keyCode === this.constants.keyCode.UP ) {
+            } else if ( keyCode === constants.keyCode.UP ) {
 
                 if ( currentHighlight.length === 0 ) {
                     itemToHighlight = this.$( '.bI:visible' ).last();
@@ -419,7 +498,7 @@ define( [
                     }
                 }
 
-            } else if ( keyCode === this.constants.keyCode.DOWN ) {
+            } else if ( keyCode === constants.keyCode.DOWN ) {
 
                 if ( currentHighlight.length === 0 ) {
                     itemToHighlight = this.$( '.bI:visible' ).first();
@@ -444,6 +523,9 @@ define( [
 
         /**
          * Deselects the item in the collection that is passed.
+         *
+         * @method deselectItem
+         *
          * @param {Model} removedModel
          *      A model that should be deselected.
          */
@@ -453,6 +535,9 @@ define( [
 
         /**
          * Selects the item in the collection that is passed.
+         *
+         * @method selectItem
+         *
          * @param {Model} model
          *      A model that should be deselected.
          */
@@ -462,6 +547,9 @@ define( [
 
         /**
          * Returns the visibility of the view.
+         *
+         * @method isVisible
+         *
          * @returns {boolean}
          */
         isVisible: function () {
@@ -470,6 +558,9 @@ define( [
 
         /**
          * Shows the list view. Binds the event to hide the view if user clicks anywhere else.
+         *
+         * @method showView
+         *
          */
         showView: function () {
 
@@ -491,6 +582,9 @@ define( [
 
         /**
          * Hides the view and unbinds the events that were bound while showing the view.
+         *
+         * @method hideView
+         *
          */
         hideView: function () {
             this.$el.hide();
@@ -499,6 +593,9 @@ define( [
 
         /**
          * Binds the hide events to hide the dropdown list whenever user clicks somewhere else.
+         *
+         * @method _bindHideEvent
+         *
          * @private
          */
         _bindHideEvent: function () {
@@ -513,6 +610,9 @@ define( [
 
         /**
          * Unbinds the event that was bound on the document while showing the list.
+         *
+         * @method _unbindHideEvent
+         *
          * @private
          */
         _unbindHideEvent: function () {
@@ -522,6 +622,9 @@ define( [
         /**
          * Scrolls to the items that should be shown as highlighted whenever user is traversing
          * in the list.
+         *
+         * @method _scrollToItem
+         *
          * @param {Model} item
          *      A model representing the item where the view should be scrolled.
          * @private
@@ -553,12 +656,21 @@ define( [
 
         },
 
+        /**
+         * Gets the visible items in the view.
+         *
+         * @method getVisibleItems
+         *
+         * @returns {Array}
+         */
         getVisibleItems: function() {
             return this.collection.getVisibleItems();
         },
 
         /**
-         * Deselects all the items in the collection.
+         * Clears the view. Resets the collection for ajax dropdown, deselects all items otherwise.
+         *
+         * @method clearView
          */
         clearView: function () {
             if ( this.config && this.config.ajax ) {
@@ -568,14 +680,33 @@ define( [
             }
         },
 
+        /**
+         * Disables the view. Undelegates the events.
+         *
+         * @method disableView
+         *
+         */
         disableView : function () {
             this.undelegateEvents();
         },
 
+        /**
+         * Enables the view. Delegates the events.
+         *
+         * @method enableView
+         */
         enableView : function () {
             this.delegateEvents();
         },
 
+        /**
+         * Resets the data source of the view by resetting the data that is passed to the method.
+         *
+         * @method resetDataSource
+         *
+         * @param {Array} data
+         *      An array of items that should be added after reset of the collection.
+         */
         resetDataSource: function(data) {
             this.collection.reset(data);
         },

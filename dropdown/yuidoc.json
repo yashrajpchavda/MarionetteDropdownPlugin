@@ -4,6 +4,7 @@
     "version": "1.0.0",
     "url": "",
     "options": {
+        "outdir": "documentation/apidocs",
         "linkNatives": "true",
         "paths": "*/js",
         "tabtospace": 4

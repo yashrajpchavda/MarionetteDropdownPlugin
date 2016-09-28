@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DropdownBodyView - The Dropdown API</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="The Dropdown API" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/DropdownBodyItemModel.html">DropdownBodyItemModel</a></li>
+                                <li><a href="../classes/DropdownBodyItemsCollection.html">DropdownBodyItemsCollection</a></li>
+                                <li><a href="../classes/DropdownBodyItemView.html">DropdownBodyItemView</a></li>
+                                <li><a href="../classes/DropdownBodyView.html">DropdownBodyView</a></li>
+                                <li><a href="../classes/DropdownHeaderView.html">DropdownHeaderView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemModel.html">DropdownSelectedTagItemModel</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemsCollection.html">DropdownSelectedTagItemsCollection</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemView.html">DropdownSelectedTagItemView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagsView.html">DropdownSelectedTagsView</a></li>
+                                <li><a href="../classes/DropdownView.html">DropdownView</a></li>
+                            </ul>
+
+
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Dropdown.html">Dropdown</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+
+                </div>
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>DropdownBodyView Class</h1>
+<div class="box meta">
+
+        <div class="extends">
+            Extends Marionette.CompositeView
+        </div>
+
+        <div class="foundat">
+            Defined in: <a href="../files/views_ddBodyCompView.js.html#l1"><code>views&#x2F;ddBodyCompView.js:1</code></a>
+        </div>
+
+            Module: <a href="../modules/Dropdown.html">Dropdown</a>
+
+</div>
+
+
+<div class="box intro">
+    <p>The composite body view for the dropdown items, used to render the items in the dropdown list view.  Responsible for
+various things like, refreshing the items as and when user types. Uses <code><a href="../classes/DropdownBodyItemView.html" class="crosslink">DropdownBodyItemView</a></code>
+as a <code>childView</code> and <code><a href="../classes/DropdownBodyItemsCollection.html" class="crosslink">DropdownBodyItemsCollection</a></code> as a <code>collection</code> for the view.</p>
+
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_DropdownBodyView" class="method item">
+    <h3 class="name"><code>DropdownBodyView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l1"><code>views&#x2F;ddBodyCompView.js:1</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+
+    </div>
+
+
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                            <li class="index-item method private">
+                                <a href="#method__applyTooltip">_applyTooltip</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__applyTooltipForDDItems">_applyTooltipForDDItems</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__bindHideEvent">_bindHideEvent</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleActionItemClick">_handleActionItemClick</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleAddNewItem">_handleAddNewItem</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleBodyItemClick">_handleBodyItemClick</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleFooterItemClick">_handleFooterItemClick</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__postProcessCollectionSearch">_postProcessCollectionSearch</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__renderFooterItems">_renderFooterItems</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__scrollToItem">_scrollToItem</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__unbindHideEvent">_unbindHideEvent</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_clearView">clearView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_deselectAll">deselectAll</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_deselectItem">deselectItem</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_disableView">disableView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_enableView">enableView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_filterResults">filterResults</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getVisibleItems">getVisibleItems</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_hideLoader">hideLoader</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_hideView">hideView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_isEmpty">isEmpty</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_isVisible">isVisible</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_resetDataSource">resetDataSource</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_selectItem">selectItem</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_showLoader">showLoader</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_showView">showView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_traverseListOrSelectItem">traverseListOrSelectItem</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                            <li class="index-item property">
+                                <a href="#property_collectionReset">collectionReset</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_tooltipOptions">tooltipOptions</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method__applyTooltip" class="method item private">
+    <h3 class="name"><code>_applyTooltip</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[options]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l209"><code>views&#x2F;ddBodyCompView.js:209</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method to apply the tooltip to the passed element with specified options.
+It destroys the existing tooltip first and then applies the new one.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type">JQuery</span>
+
+
+                    <div class="param-description">
+                        <p>A jquery object whom we want to apply tooltip</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[options]</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <pre><code> An options hash to be passed to the tooltip function</code></pre>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__applyTooltipForDDItems" class="method item private">
+    <h3 class="name"><code>_applyTooltipForDDItems</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l197"><code>views&#x2F;ddBodyCompView.js:197</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method to apply the tooltip to the items of the dropdown.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__bindHideEvent" class="method item private">
+    <h3 class="name"><code>_bindHideEvent</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l594"><code>views&#x2F;ddBodyCompView.js:594</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Binds the hide events to hide the dropdown list whenever user clicks somewhere else.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__handleActionItemClick" class="method item private">
+    <h3 class="name"><code>_handleActionItemClick</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>view</code>
+                </li>
+                <li class="arg">
+                        <code>itemModel</code>
+                </li>
+                <li class="arg">
+                        <code>itemConfig</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l335"><code>views&#x2F;ddBodyCompView.js:335</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handles the child event triggered by the action item click.
+Invokes the action item click callback specified in the configuration.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">view</code>
+                        <span class="type">View</span>
+
+
+                    <div class="param-description">
+                        <p>Item view which triggered the event.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">itemModel</code>
+                        <span class="type">Model</span>
+
+
+                    <div class="param-description">
+                        <p>Model representing the view that triggered the event.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">itemConfig</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>Object representing the item action that was clicked.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleAddNewItem" class="method item private">
+    <h3 class="name"><code>_handleAddNewItem</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l355"><code>views&#x2F;ddBodyCompView.js:355</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handles the add new item event that gets triggered by the child view.
+Triggers the event that is listened by the parent view to act on the same.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__handleBodyItemClick" class="method item private">
+    <h3 class="name"><code>_handleBodyItemClick</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>itemView</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l310"><code>views&#x2F;ddBodyCompView.js:310</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handles the bodyItemClick which is triggered by the child view.
+Performs the selection logic for the item based on the config - multiSelect | singleSelect
+Triggers the event that is listened by the parent view.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">itemView</code>
+                        <span class="type">View</span>
+
+
+                    <div class="param-description">
+                        <p>A view representing the item that was clicked.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleFooterItemClick" class="method item private">
+    <h3 class="name"><code>_handleFooterItemClick</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>event</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l263"><code>views&#x2F;ddBodyCompView.js:263</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handles the click event performed on the footer item. Triggers the event to the parent view with <code>itemKey</code> as
+a parameter.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>Event object.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__postProcessCollectionSearch" class="method item private">
+    <h3 class="name"><code>_postProcessCollectionSearch</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l408"><code>views&#x2F;ddBodyCompView.js:408</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A handler that gets passed to the filter item method of the collection
+to be invoked whenever the data in the collection has been refreshed based on
+whatever user has typed</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__renderFooterItems" class="method item private">
+    <h3 class="name"><code>_renderFooterItems</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l234"><code>views&#x2F;ddBodyCompView.js:234</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method that iterates through the items specified in footer config and renders the html for the same.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__scrollToItem" class="method item private">
+    <h3 class="name"><code>_scrollToItem</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>item</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l622"><code>views&#x2F;ddBodyCompView.js:622</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Scrolls to the items that should be shown as highlighted whenever user is traversing
+in the list.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">item</code>
+                        <span class="type">Model</span>
+
+
+                    <div class="param-description">
+                        <p>A model representing the item where the view should be scrolled.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__unbindHideEvent" class="method item private">
+    <h3 class="name"><code>_unbindHideEvent</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l611"><code>views&#x2F;ddBodyCompView.js:611</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Unbinds the event that was bound on the document while showing the list.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_clearView" class="method item">
+    <h3 class="name"><code>clearView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l670"><code>views&#x2F;ddBodyCompView.js:670</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Clears the view. Resets the collection for ajax dropdown, deselects all items otherwise.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_deselectAll" class="method item">
+    <h3 class="name"><code>deselectAll</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l299"><code>views&#x2F;ddBodyCompView.js:299</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Deselects all the items in the collection.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_deselectItem" class="method item">
+    <h3 class="name"><code>deselectItem</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>removedModel</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l524"><code>views&#x2F;ddBodyCompView.js:524</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Deselects the item in the collection that is passed.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">removedModel</code>
+                        <span class="type">Model</span>
+
+
+                    <div class="param-description">
+                        <p>A model that should be deselected.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_disableView" class="method item">
+    <h3 class="name"><code>disableView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l683"><code>views&#x2F;ddBodyCompView.js:683</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Disables the view. Undelegates the events.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_enableView" class="method item">
+    <h3 class="name"><code>enableView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l693"><code>views&#x2F;ddBodyCompView.js:693</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Enables the view. Delegates the events.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_filterResults" class="method item">
+    <h3 class="name"><code>filterResults</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>text</code>
+                </li>
+                <li class="arg">
+                        <code>selectedItems</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l367"><code>views&#x2F;ddBodyCompView.js:367</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Filters the results in the collection based on the text that is passed to the view. Invokes the debounced
+search handler so that we don't keep searching every time but the last debounced call.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">text</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+                    <div class="param-description">
+                        <p>A string used to filter the items in the collection.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">selectedItems</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+                    <div class="param-description">
+                        <p>An array of selected items to highlight the newly returned items by the server.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_getVisibleItems" class="method item">
+    <h3 class="name"><code>getVisibleItems</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l659"><code>views&#x2F;ddBodyCompView.js:659</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Gets the visible items in the view.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_hideLoader" class="method item">
+    <h3 class="name"><code>hideLoader</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l396"><code>views&#x2F;ddBodyCompView.js:396</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Hides the loader in the view.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_hideView" class="method item">
+    <h3 class="name"><code>hideView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l583"><code>views&#x2F;ddBodyCompView.js:583</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Hides the view and unbinds the events that were bound while showing the view.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_isEmpty" class="method item">
+    <h3 class="name"><code>isEmpty</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>collection</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l436"><code>views&#x2F;ddBodyCompView.js:436</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns true of false based on the visible items present in the collection.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">collection</code>
+                        <span class="type">Collection</span>
+
+
+                    <div class="param-description">
+                        <p>A collection whose items should be verified.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_isVisible" class="method item">
+    <h3 class="name"><code>isVisible</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l548"><code>views&#x2F;ddBodyCompView.js:548</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the visibility of the view.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_resetDataSource" class="method item">
+    <h3 class="name"><code>resetDataSource</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l702"><code>views&#x2F;ddBodyCompView.js:702</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Resets the data source of the view by resetting the data that is passed to the method.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+                    <div class="param-description">
+                        <p>An array of items that should be added after reset of the collection.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_selectItem" class="method item">
+    <h3 class="name"><code>selectItem</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>model</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l536"><code>views&#x2F;ddBodyCompView.js:536</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Selects the item in the collection that is passed.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">model</code>
+                        <span class="type">Model</span>
+
+
+                    <div class="param-description">
+                        <p>A model that should be deselected.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_showLoader" class="method item">
+    <h3 class="name"><code>showLoader</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l384"><code>views&#x2F;ddBodyCompView.js:384</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Shows the loader in the view.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_showView" class="method item">
+    <h3 class="name"><code>showView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l559"><code>views&#x2F;ddBodyCompView.js:559</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Shows the list view. Binds the event to hide the view if user clicks anywhere else.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_traverseListOrSelectItem" class="method item">
+    <h3 class="name"><code>traverseListOrSelectItem</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>keyCode</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l453"><code>views&#x2F;ddBodyCompView.js:453</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Traverses through the list based on the keyCode number that is passed.
+Preforms following things based on the keys:</p>
+<ul>
+<li><strong>ENTER</strong>: Selects the current highlighted item. Fires the click event on the same to select it.</li>
+<li><strong>UP / DOWN</strong>: Navigates in the list based on keys, cycles through the items.</li>
+</ul>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">keyCode</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+
+                    <div class="param-description">
+                        <p>A number indicating the key that was pressed.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_collectionReset" class="property item">
+    <h3 class="name"><code>collectionReset</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l60"><code>views&#x2F;ddBodyCompView.js:60</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>A property used to decide whether to reset the collection or not.</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_tooltipOptions" class="property item">
+    <h3 class="name"><code>tooltipOptions</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddBodyCompView.js.html#l72"><code>views&#x2F;ddBodyCompView.js:72</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>A config used to apply the tooltip to the items of the dropdown.</p>
+
+    </div>
+
+
+
+</div>
+            </div>
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

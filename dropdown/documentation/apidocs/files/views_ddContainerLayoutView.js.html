@@ -1,3 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>views/ddContainerLayoutView.js - The Dropdown API</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="The Dropdown API" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/DropdownBodyItemModel.html">DropdownBodyItemModel</a></li>
+                                <li><a href="../classes/DropdownBodyItemsCollection.html">DropdownBodyItemsCollection</a></li>
+                                <li><a href="../classes/DropdownBodyItemView.html">DropdownBodyItemView</a></li>
+                                <li><a href="../classes/DropdownBodyView.html">DropdownBodyView</a></li>
+                                <li><a href="../classes/DropdownHeaderView.html">DropdownHeaderView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemModel.html">DropdownSelectedTagItemModel</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemsCollection.html">DropdownSelectedTagItemsCollection</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemView.html">DropdownSelectedTagItemView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagsView.html">DropdownSelectedTagsView</a></li>
+                                <li><a href="../classes/DropdownView.html">DropdownView</a></li>
+                            </ul>
+
+
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Dropdown.html">Dropdown</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+
+                </div>
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1 class="file-heading">File: views/ddContainerLayoutView.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
 /**
  * Dropdown Module.
  * A module which contains the files related to the dropdown component.
@@ -9,14 +101,14 @@
  * This is the main base view for the dropdown component. If you want to use this plugin, following is the list of items that you
  * might be interested in knowing.
  *
- * * You need to copy the files into your application's module directory and require `ddContainerLayout` file from the
+ * * You need to copy the files into your application&#x27;s module directory and require &#x60;ddContainerLayout&#x60; file from the
  *   dropdown module and create an instance of this view.
  *
- * * You need to attach the `dd2.css` provided with this codebase into your application. Plugin uses some of the font-awesome
+ * * You need to attach the &#x60;dd2.css&#x60; provided with this codebase into your application. Plugin uses some of the font-awesome
  *   icons as well, hence please make sure you add that too.
  *
  * * The possible configurations that can be passed to the dropdown view, are available in the documentation of the
- *   `{{#crossLink "DropdownView/initialize:method"}}{{/crossLink}}` method of the same class.
+ *   &#x60;{{#crossLink &quot;DropdownView/initialize:method&quot;}}{{/crossLink}}&#x60; method of the same class.
  *
  * * A dropdown can be created as:
  *
@@ -28,27 +120,27 @@
  *
  * * The created dropdown view can be either shown into a region,
  *
- *       view.getRegion( 'dropdown' ).show( dropdownViewInstance );
+ *       view.getRegion( &#x27;dropdown&#x27; ).show( dropdownViewInstance );
  *
  * * or if you want to display it inside any existing block container which is present in the DOM, you can just do,
  *
- *       domElement.html( dropdownViewInstance.render().trigger( 'attach' ).$el )
+ *       domElement.html( dropdownViewInstance.render().trigger( &#x27;attach&#x27; ).$el )
  *
  * * We need to trigger the attach in order to do some processing that happens at the time when the view is attached
  *   to the DOM.
  *
- * * The dropdown view has two main regions, **header** and **body**. The `{{#crossLink "DropdownHeaderView"}}{{/crossLink}}` and
- *   `{{#crossLink "DropdownBodyView"}}{{/crossLink}}` are being rendered in respective regions and are available as
- *   `{{#crossLink "DropdownView/headerView:property"}}{{/crossLink}}` and `{{#crossLink "DropdownView/ddBodyView:property"}}{{/crossLink}}`
- *   properties on `dropdownViewInstance`.
+ * * The dropdown view has two main regions, **header** and **body**. The &#x60;{{#crossLink &quot;DropdownHeaderView&quot;}}{{/crossLink}}&#x60; and
+ *   &#x60;{{#crossLink &quot;DropdownBodyView&quot;}}{{/crossLink}}&#x60; are being rendered in respective regions and are available as
+ *   &#x60;{{#crossLink &quot;DropdownView/headerView:property&quot;}}{{/crossLink}}&#x60; and &#x60;{{#crossLink &quot;DropdownView/ddBodyView:property&quot;}}{{/crossLink}}&#x60;
+ *   properties on &#x60;dropdownViewInstance&#x60;.
  *
  * ##### The example with all the available configurations:
- * Not all of them can be used together, the documentation available at `{{#crossLink "DropdownView/initialize:method"}}{{/crossLink}}`
+ * Not all of them can be used together, the documentation available at &#x60;{{#crossLink &quot;DropdownView/initialize:method&quot;}}{{/crossLink}}&#x60;
  * gives a better idea about all of them.
  *
  *     var dropdownViewInstance = new DropdownView( {
  *
- *         placeHolder: 'Please Select',
+ *         placeHolder: &#x27;Please Select&#x27;,
  *
  *         multiSelect: false,
  *
@@ -58,27 +150,27 @@
  *
  *         data: [ {
  *             id: 1,
- *             text: 'item 1',
+ *             text: &#x27;item 1&#x27;,
  *             rawObject: {
  *                 originalId: 1,
- *                 originalText: 'test',
+ *                 originalText: &#x27;test&#x27;,
  *                 someMetaData: {
  *                 }
  *             }
  *         }, {
  *             id: 2,
- *             text: 'item 2',
+ *             text: &#x27;item 2&#x27;,
  *             rawObject: {
  *                 originalId: 2,
- *                 originalText: 'test',
+ *                 originalText: &#x27;test&#x27;,
  *                 someMetaData: {
  *                 }
  *             }
  *         } ],
  *
  *         ajax: {
- *             url: 'urlForTheAjax',
- *             type: 'get|post',
+ *             url: &#x27;urlForTheAjax&#x27;,
+ *             type: &#x27;get|post&#x27;,
  *             triggerChars: 2,
  *             requestDataFormatter: function( text ) {
  *                 return {
@@ -90,21 +182,21 @@
  *             }
  *         },
  *
- *         noDataMessage: 'No Data Found',
+ *         noDataMessage: &#x27;No Data Found&#x27;,
  *
  *         allowNew: false,
  *
- *         allowNewText: 'Add as New Item',
+ *         allowNewText: &#x27;Add as New Item&#x27;,
  *
  *         footer: [ {
- *             itemKey: 'btn1',
- *             html: 'Footer Item1',
+ *             itemKey: &#x27;btn1&#x27;,
+ *             html: &#x27;Footer Item1&#x27;,
  *             footerClick: function( dropdownViewInstance ) {
  *
  *             }
  *         }, {
- *             itemKey: 'btn2',
- *             html: 'Footer Item2',
+ *             itemKey: &#x27;btn2&#x27;,
+ *             html: &#x27;Footer Item2&#x27;,
  *             footerClick: function( dropdownViewInstance ) {
  *
  *             }
@@ -136,13 +228,13 @@
  */
 
 define( [
-    'jquery',
-    'underscore',
-    'backbone',
-    'marionette',
-    'modules/dropdown2/views/ddBodyCompView',
-    'modules/dropdown2/views/ddHeaderLayoutView',
-    'tpl!modules/dropdown2/templates/ddContainerLayout.tmpl'
+    &#x27;jquery&#x27;,
+    &#x27;underscore&#x27;,
+    &#x27;backbone&#x27;,
+    &#x27;marionette&#x27;,
+    &#x27;modules/dropdown2/views/ddBodyCompView&#x27;,
+    &#x27;modules/dropdown2/views/ddHeaderLayoutView&#x27;,
+    &#x27;tpl!modules/dropdown2/templates/ddContainerLayout.tmpl&#x27;
 ], function ( $, _, Backbone, Marionette, DropdownBodyCompositeView, DropdownHeaderLayoutView,
               DropdownContainerLayoutTemplate ) {
 
@@ -150,7 +242,7 @@ define( [
 
         template: DropdownContainerLayoutTemplate,
 
-        className: 'ddC',
+        className: &#x27;ddC&#x27;,
 
         /**
          * Event triggers object that holds the keys for the events that are triggered within the view.
@@ -161,43 +253,43 @@ define( [
          * @type {Object}
          */
         eventTriggers: {
-            toggleOptionsList: 'toggleOptionsList',
-            textSearch: 'textSearch',
-            bodyItemClick: 'bodyItemClick',
-            traverseListOrSelectItem: 'traverseListOrSelectItem',
-            deselectItem: 'deselectItem',
-            clearSingleSelect : 'clearSingleSelect',
-            selectItem: 'selectItem',
-            hideOptionsList: 'hideOptionsList',
-            addNewItem: 'addNewItem',
-            footerClick: 'footerClick',
-            convertCodeFooterClick: 'convertCodeFooterClick',
-            clearView : 'clearView'
+            toggleOptionsList: &#x27;toggleOptionsList&#x27;,
+            textSearch: &#x27;textSearch&#x27;,
+            bodyItemClick: &#x27;bodyItemClick&#x27;,
+            traverseListOrSelectItem: &#x27;traverseListOrSelectItem&#x27;,
+            deselectItem: &#x27;deselectItem&#x27;,
+            clearSingleSelect : &#x27;clearSingleSelect&#x27;,
+            selectItem: &#x27;selectItem&#x27;,
+            hideOptionsList: &#x27;hideOptionsList&#x27;,
+            addNewItem: &#x27;addNewItem&#x27;,
+            footerClick: &#x27;footerClick&#x27;,
+            convertCodeFooterClick: &#x27;convertCodeFooterClick&#x27;,
+            clearView : &#x27;clearView&#x27;
         },
 
         ui: {
-            bodyContainer: '.ddBC',
-            headerContainer: '.ddHC'
+            bodyContainer: &#x27;.ddBC&#x27;,
+            headerContainer: &#x27;.ddHC&#x27;
         },
 
         regions: {
-            bodyContainer: '.ddBC',
-            headerContainer: '.ddHC'
+            bodyContainer: &#x27;.ddBC&#x27;,
+            headerContainer: &#x27;.ddHC&#x27;
         },
 
         /**
-         * Whenever you create an instance of the `DropdownView`, by default Marionette framework calls the `initialize`
-         * method of the view and passes whatever you have passed to the `DropdownView` constructor to the `initialize`
+         * Whenever you create an instance of the &#x60;DropdownView&#x60;, by default Marionette framework calls the &#x60;initialize&#x60;
+         * method of the view and passes whatever you have passed to the &#x60;DropdownView&#x60; constructor to the &#x60;initialize&#x60;
          * method. These are the possible configurations that we can pass whenever we create an instance of the dropdown.
          *
          * @method initialize
          *
          * @param {Object} config A config object
          *
-         * @param {String} [config.placeholder='Please Select'] String that gets used as a placeholder for the dropdown.
+         * @param {String} [config.placeholder=&#x27;Please Select&#x27;] String that gets used as a placeholder for the dropdown.
          *
          * @param {Boolean} [config.multiSelect=false] Configuring dropdown as multi-select would let the user select
-         *      multiple items from the list. If not passed as `true` then the dropdown would act like a normal
+         *      multiple items from the list. If not passed as &#x60;true&#x60; then the dropdown would act like a normal
          *      dropdown with just single select facility and would let the user click on the it to open the list of options.
          *
          * @param {Number} [config.searchTriggerDelay=600] Number of milliseconds that the delay would be added before
@@ -205,33 +297,33 @@ define( [
          *      be sent only after the specified milliseconds.
          *
          * @param {Boolean} [config.showClearIcon=false] Shows the clear icon next to the textbox of the dropdown. This
-         *      clear icon lets the user clear the content of the dropdown view's textbox. It should only be used when
-         *      the view is configured to be searchable by `searchable: true`.
+         *      clear icon lets the user clear the content of the dropdown view&#x27;s textbox. It should only be used when
+         *      the view is configured to be searchable by &#x60;searchable: true&#x60;.
          *
          * @param {Array} [config.data=[]] This config is useful if you want to pass a local pre-populated data
-         *      source to the dropdown plugin. The dropdown will have the items that you speicify in the `data` array.
+         *      source to the dropdown plugin. The dropdown will have the items that you speicify in the &#x60;data&#x60; array.
          *      The format of the items in the array should be:
          *
          *     {
-         *         id: "",
-         *         text: "",
+         *         id: &quot;&quot;,
+         *         text: &quot;&quot;,
          *         rawObject: { }
          *     }
          *
-         * * `id` param can be either `String` or `Number` which identifies the item uniquely.
-         * * `text` param can be either `String` or `Number` that would be displayed to the user.
-         * * `rawObject` param is an object. It gets returned as a part of selected item whenever we want the
-         *       selected items of the dropdown through `getSelectedItems()`. The purpose of this object is to pass
+         * * &#x60;id&#x60; param can be either &#x60;String&#x60; or &#x60;Number&#x60; which identifies the item uniquely.
+         * * &#x60;text&#x60; param can be either &#x60;String&#x60; or &#x60;Number&#x60; that would be displayed to the user.
+         * * &#x60;rawObject&#x60; param is an object. It gets returned as a part of selected item whenever we want the
+         *       selected items of the dropdown through &#x60;getSelectedItems()&#x60;. The purpose of this object is to pass
          *       extra metadata to the items of the dropdown which we might want to use later on while operating on the
          *       selected items.
          *
          * @param {Object} config.ajax Option is useful when the data source of the dropdown is remote and you want the
          *      items of the dropdown to be loaded as an when user types the characters. The options of the
-         *      `ajax` config are defined below:
+         *      &#x60;ajax&#x60; config are defined below:
          *
          * @param {String} config.ajax.url the url where the ajax request should be made to fetch the data
          *
-         * @param {String} config.ajax.type the type of the request to be made `post` / `get`
+         * @param {String} config.ajax.type the type of the request to be made &#x60;post&#x60; / &#x60;get&#x60;
          *
          * @param {Number} [config.ajax.triggerChars=2] the number indicating the minimum characters required by the user to
          *      be typed to make an ajax call for the data.
@@ -246,40 +338,40 @@ define( [
          *       for the dropdown that is sent by the server as a response of the dropdown request. You can use this function to process
          *       the data that is being sent by the server to accommodate into the dropdown format. This function must
          *       return an array of objects which will be shown as items in the list. And this objects must be in the same
-         *       format as `data`.
+         *       format as &#x60;data&#x60;.
          *
          * @param {Object} config.ajax.responseDataFormatter.response The response object that is sent by the server.
          *
-         * @param {String} [config.noDataMessage='No Data Found'] A string that would be displayed whenever user
+         * @param {String} [config.noDataMessage=&#x27;No Data Found&#x27;] A string that would be displayed whenever user
          *       searches for an item and that item is not present in the list.
          *
          * @param {Boolean} [config.allowNew=false] If you want to allow the user to type in and add new items - which
-         *       are not present in the list, pass this option as `true`. This config is only useful with `multiSelect: true`.
-         *       If passed as `true` user would get an option to add new items in the list for all those searches that
+         *       are not present in the list, pass this option as &#x60;true&#x60;. This config is only useful with &#x60;multiSelect: true&#x60;.
+         *       If passed as &#x60;true&#x60; user would get an option to add new items in the list for all those searches that
          *       did not match any item.
          *
-         * @param {String} [config.allowNewText='Add as New Item'] If `allowNew` is set as `true` this text would be
+         * @param {String} [config.allowNewText=&#x27;Add as New Item&#x27;] If &#x60;allowNew&#x60; is set as &#x60;true&#x60; this text would be
          *       displayed to user an an option in the list, which user can click on to add the new item in. Executes
-         *       the `beforeNewItemAdd` callback defined under `callbacks` config, and adds the item only if the
-         *       callback returns `true`.
+         *       the &#x60;beforeNewItemAdd&#x60; callback defined under &#x60;callbacks&#x60; config, and adds the item only if the
+         *       callback returns &#x60;true&#x60;.
          *
          * @param {Array} [config.footer=null] The list of items that should be shown as footer items to the list - like Open
          *       Codebook option - in ezCAC working page. The item in the list should be in the format of the
          *       following object:
-         * ```javascript
+         * &#x60;&#x60;&#x60;javascript
          *     {
-         *         itemKey: "",
-         *         html: "",
+         *         itemKey: &quot;&quot;,
+         *         html: &quot;&quot;,
          *         footerClick: function( dropdownViewInstance ) { }
          *     }
-         * ```
-         * * `itemKey` should be a `String` or `Number` which uniquely identifies the item.
-         * * `html` is the `String` that gets rendered in the DOM to display the footer item.
-         * * `footerClick` is the function that gets invoked whenever the footer item is clicked. The callback gets
+         * &#x60;&#x60;&#x60;
+         * * &#x60;itemKey&#x60; should be a &#x60;String&#x60; or &#x60;Number&#x60; which uniquely identifies the item.
+         * * &#x60;html&#x60; is the &#x60;String&#x60; that gets rendered in the DOM to display the footer item.
+         * * &#x60;footerClick&#x60; is the function that gets invoked whenever the footer item is clicked. The callback gets
          *      executed with one parameter - that is the instance of the dropdown view.
          *
          * @param {Array} [config.selectedItems=null] The list of items that should be selected by default. It should
-         *       be of same format as `data` passed to the dropdown view.
+         *       be of same format as &#x60;data&#x60; passed to the dropdown view.
          *
          * @param {Function} [config.onItemSelect=null] The callback function that gets executed whenever user selects
          *       an item from the dropdown list. The method gets called with the following argument.
@@ -288,9 +380,9 @@ define( [
          *      we can pass.
          *
          * @param {Function} [config.callbacks.beforeNewItemAdd] The callback that gets fired for the multiSelect dropdown
-         *      with `allowNew` set as `true`. Whenever user tries to add a new item, if specified, then this callback gets executed
+         *      with &#x60;allowNew&#x60; set as &#x60;true&#x60;. Whenever user tries to add a new item, if specified, then this callback gets executed
          *      with the entered text as an argument. The newly item would only be added if the callback
-         *      returns `true`. The purpose of this is to perform any necessary validation before adding new item. The function
+         *      returns &#x60;true&#x60;. The purpose of this is to perform any necessary validation before adding new item. The function
          *      receives the following as its arguments.
          *
          * @param {String} config.callbacks.beforeNewItemAdd.itemText A string indicating the item text that has been
@@ -311,7 +403,7 @@ define( [
             this._initDefaultConfig();
 
             this.constants = {
-                disableClass : "disableDD",
+                disableClass : &quot;disableDD&quot;,
                 isDisable : false
             };
 
@@ -327,8 +419,8 @@ define( [
 
         onRender: function () {
 
-            var headerContainerRegion = this.getRegion( 'headerContainer' ),
-                bodyContainerRegion = this.getRegion( 'bodyContainer' );
+            var headerContainerRegion = this.getRegion( &#x27;headerContainer&#x27; ),
+                bodyContainerRegion = this.getRegion( &#x27;bodyContainer&#x27; );
 
             if ( this.headerView ) {
                 headerContainerRegion.reset();
@@ -389,18 +481,18 @@ define( [
          * Handles the show / hide for the dropdown body view.
          * @method _handleToggleList
          * @param {Boolean} forceToggle
-         *      If passed as `true` the dropdown will be forcefully toggled.
+         *      If passed as &#x60;true&#x60; the dropdown will be forcefully toggled.
          * @private
          */
         _handleToggleList: function ( forceToggle ) {
 
             // set the forceToggle to true if the dropdown is not searchable
-            if ( this.config && !this.config.searchable ) {
+            if ( this.config &amp;&amp; !this.config.searchable ) {
                 forceToggle = true;
             }
 
             // toggle unconditionally if forceToggle is true
-            if ( forceToggle && typeof forceToggle === 'boolean' && forceToggle.toString() === 'true' ) {
+            if ( forceToggle &amp;&amp; typeof forceToggle === &#x27;boolean&#x27; &amp;&amp; forceToggle.toString() === &#x27;true&#x27; ) {
 
                 if ( this.ddBodyView.isVisible() ) {
                     this.ddBodyView.hideView();
@@ -408,13 +500,13 @@ define( [
                     this.ddBodyView.showView();
                 }
 
-            } else if ( typeof forceToggle === 'undefined' ) {
+            } else if ( typeof forceToggle === &#x27;undefined&#x27; ) {
 
-                var searchedTerm = this.getSearchedTerm() || '';
+                var searchedTerm = this.getSearchedTerm() || &#x27;&#x27;;
 
                 var visibleItemsCount = this.ddBodyView.getVisibleItems().length;
 
-                if ( !( $.trim( searchedTerm ).length === 0 && visibleItemsCount === 0) ) {
+                if ( !( $.trim( searchedTerm ).length === 0 &amp;&amp; visibleItemsCount === 0) ) {
 
                     if ( this.ddBodyView.isVisible() ) {
                         this.ddBodyView.hideView();
@@ -455,9 +547,9 @@ define( [
          * @returns {Array}
          * Method returns an array for single select dropdown as well - with just one item.
          * The item in the returned array will have following properties:
-         * *    `id` the unique id of the dropdown item
-         * *    `text` the text of the dropdown
-         * *    `rawObject` {Object} the raw object that was passed to the item - might contain some meta-data about
+         * *    &#x60;id&#x60; the unique id of the dropdown item
+         * *    &#x60;text&#x60; the text of the dropdown
+         * *    &#x60;rawObject&#x60; {Object} the raw object that was passed to the item - might contain some meta-data about
          *          the item.
          */
         getSelectedItems: function () {
@@ -467,7 +559,7 @@ define( [
         /**
          * Sets the items specified as selected items in the dropdown view.
          * @method setSelectedItems
-         * @param {Array} items An array of items that should be set as selected. It should be of same format as `data`.
+         * @param {Array} items An array of items that should be set as selected. It should be of same format as &#x60;data&#x60;.
          */
         setSelectedItems: function ( items ) {
             this.ddBodyView.clearView();
@@ -484,7 +576,7 @@ define( [
         },
 
         /**
-         * Handler for the `textSearch` event triggered by the headerView. Invokes the respective method of
+         * Handler for the &#x60;textSearch&#x60; event triggered by the headerView. Invokes the respective method of
          * the body view so that the items displayed in the body view can be filtered based on the text that has been
          * passed.
          * @method _handleTextSearch
@@ -499,7 +591,7 @@ define( [
         },
 
         /**
-         * Handler for the `traverseListOrSelectItem` triggered by the headerView. Invokes body view's function to
+         * Handler for the &#x60;traverseListOrSelectItem&#x60; triggered by the headerView. Invokes body view&#x27;s function to
          * traverse through the list.
          * @method _handleTraverseList
          * @param {Number} keyCode A number indicating the key pressed.
@@ -511,8 +603,8 @@ define( [
         },
 
         /**
-         * Handler for the `bodyItemClick` triggered by the bodyView. Updates the header view to reflect the selection.
-         * Invokes the `config.onItemSelect` method if specified.
+         * Handler for the &#x60;bodyItemClick&#x60; triggered by the bodyView. Updates the header view to reflect the selection.
+         * Invokes the &#x60;config.onItemSelect&#x60; method if specified.
          *
          * @method _handleBodyItemClick
          * @param {View} clickedItemView A view representing the item that was clicked.
@@ -541,7 +633,7 @@ define( [
         },
 
         /**
-         * Handler for the `addNewItem` triggered by the bodyView. Invokes the headerview's method for addition of new
+         * Handler for the &#x60;addNewItem&#x60; triggered by the bodyView. Invokes the headerview&#x27;s method for addition of new
          * item.
          *
          * @method _handleAddNewItem
@@ -553,8 +645,8 @@ define( [
         },
 
         /**
-         * Handles the `footerClick` triggered by the dropdown body view.
-         * Invokes the footer item click if specified in the `config`.
+         * Handles the &#x60;footerClick&#x60; triggered by the dropdown body view.
+         * Invokes the footer item click if specified in the &#x60;config&#x60;.
          *
          * @method _handleFooterClick
          *
@@ -564,14 +656,14 @@ define( [
 
             var clickedItemConfig = _.findWhere( this.config.footer, { itemKey: itemKey } );
 
-            if ( clickedItemConfig && typeof clickedItemConfig.footerClick === 'function' ) {
+            if ( clickedItemConfig &amp;&amp; typeof clickedItemConfig.footerClick === &#x27;function&#x27; ) {
                 clickedItemConfig.footerClick.call( window, this );
             }
 
         },
 
         /**
-         * Handler for the `deselectItem` triggered by the headerView. Invokes bodyViews method to deselect the item
+         * Handler for the &#x60;deselectItem&#x60; triggered by the headerView. Invokes bodyViews method to deselect the item
          * that is passed to the method.
          * @method _deselectItem
          * @param {Model} removedModel
@@ -584,7 +676,7 @@ define( [
         },
 
         /**
-         * Handler for the clearing single select. It'll invoke the passed `config.onClearSelectedItem` handler
+         * Handler for the clearing single select. It&#x27;ll invoke the passed &#x60;config.onClearSelectedItem&#x60; handler
          * if there is any.
          *
          * @method _handleClearSingleSelect
@@ -597,7 +689,7 @@ define( [
         },
 
         /**
-         * Handler for the selectItem triggered by the headerView. Invokes the body view's method passing the model.
+         * Handler for the selectItem triggered by the headerView. Invokes the body view&#x27;s method passing the model.
          *
          * @method _selectItem
          *
@@ -611,7 +703,7 @@ define( [
         },
 
         /**
-         * Handler for the hideOptionsList triggered by the headerView. Invokes the body view's method to perform
+         * Handler for the hideOptionsList triggered by the headerView. Invokes the body view&#x27;s method to perform
          * action.
          *
          * @method hideOptionsList
@@ -682,18 +774,8 @@ define( [
         },
 
         /**
-         * A method to blur away from the input of the dropdown.
-         *
-         * @method blurInput
-         *
-         */
-        blurInput: function() {
-            this.headerView.blurInput();
-        },
-
-        /**
          * To invoke the search functionality of the dropdown through code.
-         * It'll be used in ajax support mostly.
+         * It&#x27;ll be used in ajax support mostly.
          *
          * @method searchTerm
          *
@@ -707,13 +789,13 @@ define( [
         /**
          * A method to reset the data source of the dropdown with the newly passed data source. Resets the collection
          * of the items. It will not bring any impact on the header view, hence the selected item(s) will stay as is,
-         * even if they don't exist in the new data source.
+         * even if they don&#x27;t exist in the new data source.
          *
          * @method resetDataSource
          *
          * @param {Array} data
          *      The list of items that should be displayed after reset. This data source will have to be of the same
-         *      format as we have in the `data` in the coniguration of `initialize` method.
+         *      format as we have in the &#x60;data&#x60; in the coniguration of &#x60;initialize&#x60; method.
          */
 
         resetDataSource: function(data) {
@@ -727,3 +809,21 @@ define( [
     } );
 
 } );
+    </pre>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>models/bodyItemModel.js - The Dropdown API</title>
+    <title>views/ddBodyEmptyView.js - The Dropdown API</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -38,10 +38,21 @@
 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/DropdownBodyItemModel.html">DropdownBodyItemModel</a></li>
+                                <li><a href="../classes/DropdownBodyItemsCollection.html">DropdownBodyItemsCollection</a></li>
+                                <li><a href="../classes/DropdownBodyItemView.html">DropdownBodyItemView</a></li>
+                                <li><a href="../classes/DropdownBodyView.html">DropdownBodyView</a></li>
+                                <li><a href="../classes/DropdownHeaderView.html">DropdownHeaderView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemModel.html">DropdownSelectedTagItemModel</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemsCollection.html">DropdownSelectedTagItemsCollection</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemView.html">DropdownSelectedTagItemView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagsView.html">DropdownSelectedTagsView</a></li>
+                                <li><a href="../classes/DropdownView.html">DropdownView</a></li>
                             </ul>
 
 
                             <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Dropdown.html">Dropdown</a></li>
                             </ul>
                         </div>
                     </div>
@@ -75,27 +86,52 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: models/bodyItemModel.js</h1>
+<h1 class="file-heading">File: views/ddBodyEmptyView.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * Created by Yashraj.C on 12/21/2015.
+ * Created by Yashraj.C on 12/7/2015.
  */
 
-
 define( [
-
     &#x27;jquery&#x27;,
     &#x27;underscore&#x27;,
-    &#x27;backbone&#x27;
+    &#x27;backbone&#x27;,
+    &#x27;marionette&#x27;,
+    &#x27;tpl!modules/dropdown2/templates/emptyView.tmpl&#x27;
+], function ( $, _, Backbone, Marionette, emptyViewTmpl ) {
 
-], function ( $, _, Backbone ) {
+    return Marionette.ItemView.extend( {
+        template: emptyViewTmpl,
+        className: &#x27;bI&#x27;,
 
-    return Backbone.Model.extend( {
-        defaults: {
-            visible: true,
-            selected: false
+        config: {},
+
+        events: {
+            &#x27;click&#x27;: &#x27;handleItemClick&#x27;
+        },
+
+        initialize: function ( options ) {
+
+            this.config = {};
+            _.extend( this.config, options.config );
+            this.model.set( &#x27;config&#x27;, this.config );
+
+        },
+
+        /**
+         * Click handler for the add new item.
+         * Triggers the add new item if the config is set to allow add new items.
+         * @param {Object} event
+         *      Event object for the click event.
+         */
+        handleItemClick: function () {
+
+            if ( this.config.allowNew ) {
+                this.trigger( &#x27;addNewItem&#x27; );
+            }
+
         }
     } );
 

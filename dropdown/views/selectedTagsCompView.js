@@ -1,5 +1,11 @@
 /**
- * Created by Yashraj.C on 12/4/2015.
+ * A view that renders all the selected items tags and the input box to search the items. It has different behaviour
+ * based on single select or multi select. Renders itself accordingly. Uses `{{#crossLink "DropdownSelectedTagItemsCollection"}}{{/crossLink}}`
+ * as a `collection` and `{{#crossLink "DropdownSelectedTagItemView"}}{{/crossLink}}` as an `childView`.
+ *
+ * @class DropdownSelectedTagsView
+ * @extends Marionette.CompositeView
+ * @constructor
  */
 
 define( [
@@ -12,20 +18,15 @@ define( [
     'modules/dropdown2/collections/selectedTags'
 ], function ( $, _, Backbone, Marionette, SelectedTagsItemView, selectedTagCompTemplate, SelectedTagsCollection ) {
 
-    return Marionette.CompositeView.extend( {
 
-        childView : SelectedTagsItemView,
-
-        template : selectedTagCompTemplate,
-
-        childViewContainer : '.tagsC',
-
-        className : 'tagList',
-
-        constants : {
-            withClear : "withClear",
+    /**
+     * An object for constants used in this view
+     * @type {Object}
+     */
+    var constants = {
+        withClear : "withClear",
             keyCode   : {
-                BACKSPACE : 8,
+            BACKSPACE : 8,
                 COMMA     : 188,
                 DELETE    : 46,
                 DOWN      : 40,
@@ -41,8 +42,18 @@ define( [
                 SPACE     : 32,
                 TAB       : 9,
                 UP        : 38
-            }
-        },
+        }
+    };
+
+    return Marionette.CompositeView.extend( {
+
+        childView : SelectedTagsItemView,
+
+        template : selectedTagCompTemplate,
+
+        childViewContainer : '.tagsC',
+
+        className : 'tagList',
 
         templateHelpers : function () {
             return {
@@ -57,27 +68,30 @@ define( [
         },
 
         events : {
-            'click @ui.listToggleButton' : 'handleListToggleClick',
-            'click @ui.inputText'        : 'handleInputClick',
-            'keyup @ui.inputText'        : 'handleInputKeyUp',
-            'click @ui.clearButton'      : 'handleClearIconClick',
+            'click @ui.listToggleButton' : '_handleListToggleClick',
+            'click @ui.inputText'        : '_handleInputClick',
+            'keyup @ui.inputText'        : '_handleInputKeyUp',
+            'click @ui.clearButton'      : '_handleClearIconClick',
             'focus @ui.inputText'        : '_handleInputFocus'
         },
 
         childEvents : {
-            'removeTag' : 'handleRemoveTag'
+            'removeTag' : '_handleRemoveTag'
         },
 
         initialize : function ( options ) {
 
+            // set the instance variable for config
             this.config = {};
 
+            // extend the config that is passed to the view
             _.extend( this.config, options.config );
 
             this.eventTriggers = options.eventTriggers;
 
             this.collection = new SelectedTagsCollection();
 
+            // add the tags to the collection for multiSelect dropdown if there are selectedItems specified in the config.
             if ( this.config.multiSelect && this.config.selectedItems && this.config.selectedItems.length > 0 ) {
                 // handle multi select dropdown
                 this._addTags( this.config.selectedItems );
@@ -110,7 +124,7 @@ define( [
 
             // show the clear icon if specified in config
             if ( this.config.showClearIcon ) {
-                this.$el.addClass( this.constants.withClear );
+                this.$el.addClass( constants.withClear );
                 this.ui.clearButton.show();
             }
 
@@ -119,18 +133,27 @@ define( [
         /**
          * Click event handler for the list toggle button click.
          * Triggers the event that is listened by the parent view - ddHeaderLayoutView.
+         *
+         * @method _handleListToggleClick
+         *
+         * @private
          */
-        handleListToggleClick : function () {
+        _handleListToggleClick : function () {
             this.trigger( this.eventTriggers.toggleOptionsList, true );
         },
 
         /**
          * Click event handler for the input box present in the view.
          * Triggers the event that is listened by the parent view - ddHeaderLayoutView.
+         *
+         * @method _handleInputClick
+         *
          * @param {Object} event
          *      Event object for event.
+         *
+         * @private
          */
-        handleInputClick : function ( event ) {
+        _handleInputClick : function ( event ) {
             this.trigger( this.eventTriggers.toggleOptionsList );
             //event.stopPropagation();
         },
@@ -139,22 +162,34 @@ define( [
          * Key up event handler for the input box present in the view.
          * Checks the key that was pressed and triggers the respective event based on the key
          * pressed.
+         *
+         * @method _handleInputKeyUp
+         *
          * @param {Object} event
          *      Event object for the event.
+         *
+         * @private
          */
-        handleInputKeyUp : function ( event ) {
+        _handleInputKeyUp : function ( event ) {
 
             var $target = $( event.target ),
                 eventCode = event.which;
 
-            // if the key pressed is either up or down arrow, highlight the item in the list
-            if ( eventCode === this.constants.keyCode.UP || eventCode === this.constants.keyCode.DOWN ||
-                eventCode === this.constants.keyCode.ENTER ) {
+            // if the key pressed is either up or down arrow, trigger the event to highlight the item in the list
+            if ( eventCode === constants.keyCode.UP || eventCode === constants.keyCode.DOWN ||
+                eventCode === constants.keyCode.ENTER ) {
+
                 this.trigger( this.eventTriggers.traverseListOrSelectItem, eventCode );
-            } else if ( eventCode === this.constants.keyCode.ESCAPE ) {
+
+            } else if ( eventCode === constants.keyCode.ESCAPE ) {
+                // if the key pressed is escape, hide the options list
+
                 this.trigger( this.eventTriggers.hideOptionsList );
+
             } else if ( ( this.config.searchable || this.config.multiSelect ) &&
-                this.isSearchTriggerKey( event ) ) {
+                this._isSearchTriggerKey( event ) ) {
+                // otherwise, if the dropdown is searchable or multiSelect and the pressed key should trigger the search
+                // then trigger the search
 
                 // deselect the selected item if it's single select
                 if ( !this.config.multiSelect ) {
@@ -162,14 +197,34 @@ define( [
                 }
 
                 this.trigger( this.eventTriggers.textSearch, $.trim( $target.val() ), this.getSelectedItems() );
+
+                // execute the keyUp callback if specified
                 if ( this.config.callbacks && typeof this.config.callbacks.onKeyUp === 'function' ) {
                     this.config.callbacks.onKeyUp.call( null, $.trim( $target.val() ) );
                 }
+
             }
 
         },
 
-        isSearchTriggerKey : function ( eventObject ) {
+        /**
+         * A method to check whether the pressed key should trigger the search inside the dropdown or not.
+         * Currently the method returns `true` if
+         * * Any of the number, alphabet or utility key (backspace, delete) is pressed
+         * * Paste event is detected
+         *
+         * Method returns `false` if
+         * * If with alphabet or utility - alt or ctrl key is pressed
+         *
+         * @method _isSearchTriggerKey
+         *
+         * @param {Object} eventObject
+         *      JavaScript event object containing the information about the event
+         * @returns {Boolean}
+         *
+         * @private
+         */
+        _isSearchTriggerKey : function ( eventObject ) {
 
             var eventCode = eventObject.which,
                 isNumberKey = ( eventCode >= 48 && eventCode <= 57 ) || ( eventCode >= 96 && eventCode <= 105 ),
@@ -181,14 +236,6 @@ define( [
 
             var isAlphabetWithoutCtrlOrAltKey = ( !isAlphabetKey || ( isAlphabetKey && !( isCtrlKey || isAltKey ) ) );
 
-            /**
-             * True
-             *      if any of the number, alphabet or utility key is pressed
-             *      if paste event is detected: ctrl + v key ( 86 )
-             *
-             * False
-             *      if ctrl or alt is pressed with any of the alphabet keys
-             */
             return isPasteEvent || ( ( isNumberKey || isAlphabetKey || isUtilityKey ) && isAlphabetWithoutCtrlOrAltKey );
         },
 
@@ -196,6 +243,9 @@ define( [
          * Updates selected item for the view.
          * If view is single select, updates the text box's value as the selected value, else
          * adds the selected item to the selected tags view.
+         *
+         * @method updateSelectedItem
+         *
          * @param {Backbone.Model} selectedItem
          *      A model representing the item that needs to be selected.
          */
@@ -214,7 +264,7 @@ define( [
                         this.trigger( this.eventTriggers.textSearch, $.trim( this.ui.inputText.val() ), this.getSelectedItems() );
 
                     } else {
-                        this.removeTag( selectedItem );
+                        this._removeTag( selectedItem );
                     }
                     this.ui.inputText.focus();
 
@@ -227,12 +277,17 @@ define( [
 
         /**
          * Removes the item from the selected tags.
-         * Finds the item that was passed from the collection and removes it from the collections.
+         * Finds the item that was passed from the collection and removes it from the collection.
          * View gets updated eventually.
+         *
+         * @method _removeTag
+         *
          * @param {Backbone.Model} modelToRemove
          *      A model that needs to be removed from the view.
+         *
+         * @private
          */
-        removeTag : function ( modelToRemove ) {
+        _removeTag : function ( modelToRemove ) {
 
             var model = this.collection.findWhere( {
                 id   : modelToRemove.get( 'id' ),
@@ -248,6 +303,9 @@ define( [
         /**
          * Gets called whenever user wants to add an item that is not present in the list.
          * Invokes the beforeNewItemAdd handler if specified and adds only if the callback returns true.
+         *
+         * @method addNewItem
+         *
          */
         addNewItem : function () {
 
@@ -273,8 +331,12 @@ define( [
 
         /**
          * Adds the new item to the selected tags list.
+         *
+         * @method _addItemToCollection
+         *
          * @param {String} inputText
          *      A string indicating the item that should be added to the list.
+         *
          * @private
          */
         _addItemToCollection : function ( inputText ) {
@@ -287,10 +349,15 @@ define( [
         /**
          * Handles the removeTag event that gets triggered by the child view.
          * Triggers the event to deselect the item in the list of items.
+         *
+         * @method _handleRemoveTag
+         *
          * @param {View} itemView
          *      A view that triggered the removeTag event.
+         *
+         * @private
          */
-        handleRemoveTag : function ( itemView ) {
+        _handleRemoveTag : function ( itemView ) {
             this.collection.remove( itemView.model );
             this.ui.inputText.focus();
             this.trigger( this.eventTriggers.deselectItem, itemView.model );
@@ -298,6 +365,9 @@ define( [
 
         /**
          * Returns the selected items in the view.
+         *
+         * @method getSelectedItems
+         *
          * @returns {Array}
          *      An array of the items that are selected.
          */
@@ -326,6 +396,9 @@ define( [
 
         /**
          * Updates the selected items based on the items list provided.
+         *
+         * @method setSelectedItems
+         *
          * @param {Array} items
          *      An array of items that should be set as selected.
          */
@@ -356,12 +429,13 @@ define( [
         },
 
         /**
-         * Handles the clear icon click for the input box.
-         * Clears the input value and resets the selected item config
+         * Handles the clear icon click for the input box. Clears the input value and resets the selected item config
          * if the dropdown is single select.
          * @param event
+         *
+         * @private
          */
-        handleClearIconClick : function ( event ) {
+        _handleClearIconClick : function ( event ) {
 
             if ( this.config.showClearIcon ) {
 
@@ -381,8 +455,12 @@ define( [
         /**
          * A focus event handler for the input box of the dropdown.
          * Checks the dropdown's config and selects the entire text of the input if needed.
+         *
+         * @method _handleInputFocus
+         *
          * @param {Object} event
          *      Event object of the event.
+         *
          * @private
          */
         _handleInputFocus : function ( event ) {
@@ -395,6 +473,11 @@ define( [
         /**
          * A function that returns the text that has been entered in the
          * input box of the dropdown while searching.
+         *
+         * @method getEnteredText
+         *
+         * @returns {String}
+         *
          */
         getEnteredText : function () {
             return this.ui.inputText.val();
@@ -404,17 +487,37 @@ define( [
          * A method which focuses on the input text of the dropdown.
          * Added a set timeout as the item may not have been rendered in the dom whenever
          * focus is immediately called after the render of dropdown.
+         *
+         * @method focusInput
+         *
          */
         focusInput : function () {
             var that = this;
-            // added settimeout as just focus didn't work
+            // added setTimeout as just focus didn't work
             setTimeout( function () {
                 that._focusInput();
             }, 500 );
         },
 
         /**
+         * A method to blur away from the input of the dropdown.
+         *
+         * @method blurInput
+         *
+         */
+        blurInput: function() {
+
+            if ( this.ui.inputText && this.ui.inputText.length > 0 ) {
+                !this.isDestroyed && this.ui.inputText.blur();
+            }
+
+        },
+
+        /**
          * Sets the value for the input control.
+         *
+         * @method _setInputValue
+         *
          * @param {String} text
          *      A value that should be set for the input.
          * @private
@@ -425,6 +528,9 @@ define( [
 
         /**
          * Adds the items to the collection.
+         *
+         * @method _addTags
+         *
          * @param {Array} items
          *      An array of the items that should be added in the collection.
          * @private
@@ -435,6 +541,9 @@ define( [
 
         /**
          * Focuses the input control.
+         *
+         * @method _focusInput
+         *
          * @private
          */
         _focusInput : function () {
@@ -446,6 +555,9 @@ define( [
         /**
          * Clears the input text's value.
          * Clears the selected items collection to remove all the selected items.
+         *
+         * @method clearView
+         *
          */
         clearView : function () {
             this.ui.inputText.val( '' );
@@ -456,7 +568,10 @@ define( [
         /**
          * This method is to call search functionality programmatically.
          * It'll be called from parent view.
-         * @param term
+         *
+         * @method searchTerm
+         *
+         * @param {String} text
          *      A term represents text.
          */
         searchTerm : function ( text ) {
@@ -479,6 +594,9 @@ define( [
 
         /**
          * This method is to disable dropdown programmatically.
+         *
+         * @method disableView
+         *
          */
         disableView : function () {
             this.ui.inputText.attr( "disabled", "disabled" );
@@ -490,6 +608,8 @@ define( [
 
         /**
          * This method is to enable dropdown programmatically.
+         *
+         * @method enableView
          */
         enableView : function () {
             this.ui.inputText.removeAttr( "disabled" );

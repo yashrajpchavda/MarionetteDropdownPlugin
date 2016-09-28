@@ -1,0 +1,2248 @@
+{
+    "project": {
+        "name": "The Dropdown API",
+        "description": "A dropdown plugin created using Marionette / Backbone.",
+        "version": "1.0.0",
+        "url": ""
+    },
+    "files": {
+        "collections/bodyItemsCollection.js": {
+            "name": "collections/bodyItemsCollection.js",
+            "modules": {},
+            "classes": {
+                "DropdownBodyItemsCollection": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "collections/selectedTags.js": {
+            "name": "collections/selectedTags.js",
+            "modules": {},
+            "classes": {
+                "DropdownSelectedTagItemsCollection": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "models/bodyItemModel.js": {
+            "name": "models/bodyItemModel.js",
+            "modules": {},
+            "classes": {
+                "DropdownBodyItemModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "models/selectedTag.js": {
+            "name": "models/selectedTag.js",
+            "modules": {},
+            "classes": {
+                "DropdownSelectedTagItemModel": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "views/ddBodyCompView.js": {
+            "name": "views/ddBodyCompView.js",
+            "modules": {},
+            "classes": {
+                "DropdownBodyView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "views/ddBodyEmptyView.js": {
+            "name": "views/ddBodyEmptyView.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "views/ddBodyItemView.js": {
+            "name": "views/ddBodyItemView.js",
+            "modules": {},
+            "classes": {
+                "DropdownBodyItemView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "views/ddContainerLayoutView.js": {
+            "name": "views/ddContainerLayoutView.js",
+            "modules": {
+                "Dropdown": 1
+            },
+            "classes": {
+                "DropdownView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "views/ddHeaderLayoutView.js": {
+            "name": "views/ddHeaderLayoutView.js",
+            "modules": {},
+            "classes": {
+                "DropdownHeaderView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "views/selectedTagItemView.js": {
+            "name": "views/selectedTagItemView.js",
+            "modules": {},
+            "classes": {
+                "DropdownSelectedTagItemView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "views/selectedTagsCompView.js": {
+            "name": "views/selectedTagsCompView.js",
+            "modules": {},
+            "classes": {
+                "DropdownSelectedTagsView": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "Dropdown": {
+            "name": "Dropdown",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "DropdownBodyItemsCollection": 1,
+                "DropdownSelectedTagItemsCollection": 1,
+                "DropdownBodyItemModel": 1,
+                "DropdownSelectedTagItemModel": 1,
+                "DropdownBodyView": 1,
+                "DropdownBodyItemView": 1,
+                "DropdownView": 1,
+                "DropdownHeaderView": 1,
+                "DropdownSelectedTagItemView": 1,
+                "DropdownSelectedTagsView": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "views/selectedTagsCompView.js",
+            "line": 1,
+            "description": "Dropdown Module.\nA module which contains the files related to the dropdown component."
+        }
+    },
+    "classes": {
+        "DropdownBodyItemsCollection": {
+            "name": "DropdownBodyItemsCollection",
+            "shortname": "DropdownBodyItemsCollection",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "file": "collections/bodyItemsCollection.js",
+            "line": 1,
+            "description": "Dropdown body items' collection. A collection that is used by the `{{#crossLink \"DropdownBodyView\"}}{{/crossLink}}`\ncomposite view.",
+            "is_constructor": 1
+        },
+        "DropdownSelectedTagItemsCollection": {
+            "name": "DropdownSelectedTagItemsCollection",
+            "shortname": "DropdownSelectedTagItemsCollection",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "file": "collections/selectedTags.js",
+            "line": 1,
+            "description": "Dropdown selected tag items' collection.",
+            "is_constructor": 1
+        },
+        "DropdownBodyItemModel": {
+            "name": "DropdownBodyItemModel",
+            "shortname": "DropdownBodyItemModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "file": "models/bodyItemModel.js",
+            "line": 1,
+            "description": "Dropdown body item's model.",
+            "is_constructor": 1
+        },
+        "DropdownSelectedTagItemModel": {
+            "name": "DropdownSelectedTagItemModel",
+            "shortname": "DropdownSelectedTagItemModel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "file": "models/selectedTag.js",
+            "line": 1,
+            "description": "Dropdown selected tag item's model.",
+            "is_constructor": 1
+        },
+        "DropdownBodyView": {
+            "name": "DropdownBodyView",
+            "shortname": "DropdownBodyView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "file": "views/ddBodyCompView.js",
+            "line": 1,
+            "description": "The composite body view for the dropdown items, used to render the items in the dropdown list view.  Responsible for\nvarious things like, refreshing the items as and when user types. Uses `{{#crossLink \"DropdownBodyItemView\"}}{{/crossLink}}`\nas a `childView` and `{{#crossLink \"DropdownBodyItemsCollection\"}}{{/crossLink}}` as a `collection` for the view.",
+            "extends": "Marionette.CompositeView",
+            "is_constructor": 1
+        },
+        "DropdownBodyItemView": {
+            "name": "DropdownBodyItemView",
+            "shortname": "DropdownBodyItemView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "file": "views/ddBodyItemView.js",
+            "line": 1,
+            "description": "Dropdown body item view.\nThe view for the dropdown item.",
+            "is_constructor": 1
+        },
+        "DropdownView": {
+            "name": "DropdownView",
+            "shortname": "DropdownView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "namespace": "",
+            "file": "views/ddContainerLayoutView.js",
+            "line": 8,
+            "description": "This is the main base view for the dropdown component. If you want to use this plugin, following is the list of items that you\nmight be interested in knowing.\n\n* You need to copy the files into your application's module directory and require `ddContainerLayout` file from the\n  dropdown module and create an instance of this view.\n\n* You need to attach the `dd2.css` provided with this codebase into your application. Plugin uses some of the font-awesome\n  icons as well, hence please make sure you add that too.\n\n* The possible configurations that can be passed to the dropdown view, are available in the documentation of the\n  `{{#crossLink \"DropdownView/initialize:method\"}}{{/crossLink}}` method of the same class.\n\n* A dropdown can be created as:\n\n      var dropdownViewInstance = new DropdownView( {\n          ...\n          config\n          ...\n      } );\n\n* The created dropdown view can be either shown into a region,\n\n      view.getRegion( 'dropdown' ).show( dropdownViewInstance );\n\n* or if you want to display it inside any existing block container which is present in the DOM, you can just do,\n\n      domElement.html( dropdownViewInstance.render().trigger( 'attach' ).$el )\n\n* We need to trigger the attach in order to do some processing that happens at the time when the view is attached\n  to the DOM.\n\n* The dropdown view has two main regions, **header** and **body**. The `{{#crossLink \"DropdownHeaderView\"}}{{/crossLink}}` and\n  `{{#crossLink \"DropdownBodyView\"}}{{/crossLink}}` are being rendered in respective regions and are available as\n  `{{#crossLink \"DropdownView/headerView:property\"}}{{/crossLink}}` and `{{#crossLink \"DropdownView/ddBodyView:property\"}}{{/crossLink}}`\n  properties on `dropdownViewInstance`.\n\n##### The example with all the available configurations:\nNot all of them can be used together, the documentation available at `{{#crossLink \"DropdownView/initialize:method\"}}{{/crossLink}}`\ngives a better idea about all of them.\n\n    var dropdownViewInstance = new DropdownView( {\n\n        placeHolder: 'Please Select',\n\n        multiSelect: false,\n\n        searchTriggerDelay: 600,\n\n        showClearIcon: false,\n\n        data: [ {\n            id: 1,\n            text: 'item 1',\n            rawObject: {\n                originalId: 1,\n                originalText: 'test',\n                someMetaData: {\n                }\n            }\n        }, {\n            id: 2,\n            text: 'item 2',\n            rawObject: {\n                originalId: 2,\n                originalText: 'test',\n                someMetaData: {\n                }\n            }\n        } ],\n\n        ajax: {\n            url: 'urlForTheAjax',\n            type: 'get|post',\n            triggerChars: 2,\n            requestDataFormatter: function( text ) {\n                return {\n                    key: text\n                };\n            },\n            responseDataFormatter: function( responseFromServer ) {\n                return [];\n            }\n        },\n\n        noDataMessage: 'No Data Found',\n\n        allowNew: false,\n\n        allowNewText: 'Add as New Item',\n\n        footer: [ {\n            itemKey: 'btn1',\n            html: 'Footer Item1',\n            footerClick: function( dropdownViewInstance ) {\n\n            }\n        }, {\n            itemKey: 'btn2',\n            html: 'Footer Item2',\n            footerClick: function( dropdownViewInstance ) {\n\n            }\n        }, ... ],\n\n        selectedItems: [ {\n        } ],\n\n        callbacks: {\n            beforeNewItemAdd: function( itemText ) {\n\n            },\n            onKeyUp: function( itemText ) {\n\n            }\n        },\n\n        onItemSelect: function( dropdownViewInstance ) {\n\n        }\n\n    } );",
+            "extends": "Marionette.LayoutView",
+            "is_constructor": 1
+        },
+        "DropdownHeaderView": {
+            "name": "DropdownHeaderView",
+            "shortname": "DropdownHeaderView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "namespace": "",
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 1,
+            "description": "The header layout view that gets rendered in the region in the `{{#crossLink \"DropdownView\"}}{{/crossLink}}`.\nThis view is responsible for rendering the `{{#crossLink \"DropdownSelectedTagsView\"}}{{/crossLink}}`.",
+            "extends": "Marionette.LayoutView",
+            "is_constructor": 1
+        },
+        "DropdownSelectedTagItemView": {
+            "name": "DropdownSelectedTagItemView",
+            "shortname": "DropdownSelectedTagItemView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "namespace": "",
+            "file": "views/selectedTagItemView.js",
+            "line": 1,
+            "description": "This view renders the individual item in the selected tags collection.",
+            "is_constructor": 1
+        },
+        "DropdownSelectedTagsView": {
+            "name": "DropdownSelectedTagsView",
+            "shortname": "DropdownSelectedTagsView",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Dropdown",
+            "namespace": "",
+            "file": "views/selectedTagsCompView.js",
+            "line": 1,
+            "description": "A view that renders all the selected items tags and the input box to search the items. It has different behaviour\nbased on single select or multi select. Renders itself accordingly. Uses `{{#crossLink \"DropdownSelectedTagItemsCollection\"}}{{/crossLink}}`\nas a `collection` and `{{#crossLink \"DropdownSelectedTagItemView\"}}{{/crossLink}}` as an `childView`.",
+            "extends": "Marionette.CompositeView",
+            "is_constructor": 1
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 27,
+            "description": "Deselects all the items in the collection.",
+            "itemtype": "method",
+            "name": "deSelectAll",
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 39,
+            "description": "Selects the model that has been passed as an argument.",
+            "itemtype": "method",
+            "name": "selectSingleSelectModel",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "A model to be selected",
+                    "type": "DropdownSelectedTagItemModel"
+                }
+            ],
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 53,
+            "description": "Selects the multiSelect model that is passed as an argument, it actually toggles the state of the model, as\nthis method is used by the multiSelect dropdown to toggle the state. After selection, it removes the highlights\nfrom the list items.",
+            "itemtype": "method",
+            "name": "selectMultiSelectModel",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "A model whose state needs to be toggled",
+                    "type": "DropdownSelectedTagItemModel"
+                }
+            ],
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 70,
+            "description": "Removes the highlights from the model texts that are added while user had searched for those items.",
+            "itemtype": "method",
+            "name": "_removeHighlightTags",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "A model the highlights should be removed from.",
+                    "type": "DropdownSelectedTagItemModel"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 84,
+            "description": "Removes highlights from all the models present in the collection.",
+            "itemtype": "method",
+            "name": "_removeHighlightTagsFromAll",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 101,
+            "description": "Shows all the items present in the collection by updating the attribute of the model.",
+            "itemtype": "method",
+            "name": "showAllItems",
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 113,
+            "description": "Filters the items of the dropdown.\n* For non-ajax dropdown, it iterates through all the items present in the list, and either marks the item\n  visible or invisible based on the text search. Executes the callback if specified.\n* For ajax dropdown, makes and ajax call to the server on the specified `url`, by executing the `requestDataFormatter`\n  callback to get the request parameters and executes the `responseDataFormatter` callback to format the response\n  received from the server.",
+            "itemtype": "method",
+            "name": "filterItems",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "A string that should be used to filter the items of the collection",
+                    "type": "String"
+                },
+                {
+                    "name": "selectedItems",
+                    "description": "The list of selected items that gets used to select the items after they have been\n     received from server to show them as selected. Used mostly in case of multiSelect mode.",
+                    "type": "Array"
+                },
+                {
+                    "name": "config",
+                    "description": "The dropdown config.",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "The callback function that gets executed after successful filtration happens on\n     the items.",
+                    "type": "Function"
+                }
+            ],
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 219,
+            "description": "Method that gets executed by the `filterItems` on a successful ajax from the server. It finds if the returned\nitems from the server matches with the text specified and highlights them. It also sets the returned items as\nselected if any of them matches with the items specified in selectedItems.",
+            "itemtype": "method",
+            "name": "_updateCollectionItemsPostResponse",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "A text that was searched.",
+                    "type": "String"
+                },
+                {
+                    "name": "response",
+                    "description": "Response from the server",
+                    "type": "Object"
+                },
+                {
+                    "name": "selectedItems",
+                    "description": "Existing selected items in the list.",
+                    "type": "Array"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 257,
+            "description": "Sets the default ajax config before making an ajax call to server to reload the items based on what user\nsearches in the dropdown.",
+            "itemtype": "method",
+            "name": "_processAjaxConfig",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "A string that was searched by the user.",
+                    "type": "String"
+                },
+                {
+                    "name": "config",
+                    "description": "dropdown configuration object.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 295,
+            "description": "Deselects the model that has been received as argument. If id is available, it searches with id, or text\notherwise.",
+            "itemtype": "method",
+            "name": "deSelectItem",
+            "params": [
+                {
+                    "name": "removedModel",
+                    "description": "A model that should be set as deselected.",
+                    "type": "DropdownSelectedTagItemModel"
+                }
+            ],
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 325,
+            "description": "Searches the item in the collection and marks it as selected.",
+            "itemtype": "method",
+            "name": "selectItem",
+            "params": [
+                {
+                    "name": "modelParam",
+                    "description": "A model that should be selected.",
+                    "type": "DropdownSelectedTagItemModel"
+                }
+            ],
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/bodyItemsCollection.js",
+            "line": 354,
+            "description": "Returns the array of visible items from the collection.",
+            "itemtype": "method",
+            "name": "getVisibleItems",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "DropdownBodyItemsCollection"
+        },
+        {
+            "file": "collections/selectedTags.js",
+            "line": 19,
+            "description": "Specified the comparator so that selected item tags always appear in the sorted manner",
+            "class": "DropdownSelectedTagItemsCollection"
+        },
+        {
+            "file": "collections/selectedTags.js",
+            "line": 24,
+            "description": "A method which adds the item to the collection by the text that is passed as an argument.\nFirst the method checks if the item is not already available in the collection, if not only then it adds.",
+            "itemtype": "method",
+            "name": "addItemToCollection",
+            "params": [
+                {
+                    "name": "itemText",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "DropdownSelectedTagItemsCollection"
+        },
+        {
+            "file": "collections/selectedTags.js",
+            "line": 49,
+            "description": "A method that serializes the collection items in the array and in the correct format that is needed and\nreturns it.",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "DropdownSelectedTagItemsCollection"
+        },
+        {
+            "file": "models/bodyItemModel.js",
+            "line": 20,
+            "description": "The defaults property that comes along with the backbone models.",
+            "itemtype": "property",
+            "name": "defaults",
+            "class": "DropdownBodyItemModel"
+        },
+        {
+            "file": "models/selectedTag.js",
+            "line": 16,
+            "description": "The defaults property that comes along with the backbone models.",
+            "itemtype": "property",
+            "name": "defaults",
+            "class": "DropdownSelectedTagItemModel"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 24,
+            "description": "A constant for the keycodes used in the view.",
+            "type": "{Object}",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 60,
+            "description": "A property used to decide whether to reset the collection or not.",
+            "itemtype": "property",
+            "name": "collectionReset",
+            "type": "{Boolean}",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 72,
+            "description": "A config used to apply the tooltip to the items of the dropdown.",
+            "itemtype": "property",
+            "name": "tooltipOptions",
+            "type": "{Object}",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 190,
+            "description": "For a composite view, only when the collection is re-rendered, apply the tooltip to the items",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 197,
+            "description": "A method to apply the tooltip to the items of the dropdown.",
+            "itemtype": "method",
+            "name": "_applyTooltipForDDItems",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 209,
+            "description": "A method to apply the tooltip to the passed element with specified options.\nIt destroys the existing tooltip first and then applies the new one.",
+            "itemtype": "method",
+            "name": "_applyTooltip",
+            "params": [
+                {
+                    "name": "element",
+                    "description": "A jquery object whom we want to apply tooltip",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "options",
+                    "description": "\n     An options hash to be passed to the tooltip function",
+                    "type": "Object",
+                    "optional": true
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 234,
+            "description": "A method that iterates through the items specified in footer config and renders the html for the same.",
+            "itemtype": "method",
+            "name": "_renderFooterItems",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 263,
+            "description": "Handles the click event performed on the footer item. Triggers the event to the parent view with `itemKey` as\na parameter.",
+            "itemtype": "method",
+            "name": "_handleFooterItemClick",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event object.",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 283,
+            "description": "Click handler for the footer item click.\nChecks if the footer config was provided and if yes, triggers the click event of the footer.",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "An event object for the handler",
+                    "type": "Object"
+                }
+            ],
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 299,
+            "description": "Deselects all the items in the collection.",
+            "itemtype": "method",
+            "name": "deselectAll",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 310,
+            "description": "Handles the bodyItemClick which is triggered by the child view.\nPerforms the selection logic for the item based on the config - multiSelect | singleSelect\nTriggers the event that is listened by the parent view.",
+            "itemtype": "method",
+            "name": "_handleBodyItemClick",
+            "params": [
+                {
+                    "name": "itemView",
+                    "description": "A view representing the item that was clicked.",
+                    "type": "View"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 335,
+            "description": "Handles the child event triggered by the action item click.\nInvokes the action item click callback specified in the configuration.",
+            "itemtype": "method",
+            "name": "_handleActionItemClick",
+            "params": [
+                {
+                    "name": "view",
+                    "description": "Item view which triggered the event.",
+                    "type": "View"
+                },
+                {
+                    "name": "itemModel",
+                    "description": "Model representing the view that triggered the event.",
+                    "type": "Model"
+                },
+                {
+                    "name": "itemConfig",
+                    "description": "Object representing the item action that was clicked.",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 355,
+            "description": "Handles the add new item event that gets triggered by the child view.\nTriggers the event that is listened by the parent view to act on the same.",
+            "itemtype": "method",
+            "name": "_handleAddNewItem",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 367,
+            "description": "Filters the results in the collection based on the text that is passed to the view. Invokes the debounced\nsearch handler so that we don't keep searching every time but the last debounced call.",
+            "itemtype": "method",
+            "name": "filterResults",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "A string used to filter the items in the collection.",
+                    "type": "String"
+                },
+                {
+                    "name": "selectedItems",
+                    "description": "An array of selected items to highlight the newly returned items by the server.",
+                    "type": "Array"
+                }
+            ],
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 384,
+            "description": "Shows the loader in the view.",
+            "itemtype": "method",
+            "name": "showLoader",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 396,
+            "description": "Hides the loader in the view.",
+            "itemtype": "method",
+            "name": "hideLoader",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 408,
+            "description": "A handler that gets passed to the filter item method of the collection\nto be invoked whenever the data in the collection has been refreshed based on\nwhatever user has typed",
+            "itemtype": "method",
+            "name": "_postProcessCollectionSearch",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 436,
+            "description": "Returns true of false based on the visible items present in the collection.",
+            "itemtype": "method",
+            "name": "isEmpty",
+            "params": [
+                {
+                    "name": "collection",
+                    "description": "A collection whose items should be verified.",
+                    "type": "Collection"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 453,
+            "description": "Traverses through the list based on the keyCode number that is passed.\nPreforms following things based on the keys:\n* **ENTER**: Selects the current highlighted item. Fires the click event on the same to select it.\n* **UP / DOWN**: Navigates in the list based on keys, cycles through the items.",
+            "itemtype": "method",
+            "name": "traverseListOrSelectItem",
+            "params": [
+                {
+                    "name": "keyCode",
+                    "description": "A number indicating the key that was pressed.",
+                    "type": "Number"
+                }
+            ],
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 524,
+            "description": "Deselects the item in the collection that is passed.",
+            "itemtype": "method",
+            "name": "deselectItem",
+            "params": [
+                {
+                    "name": "removedModel",
+                    "description": "A model that should be deselected.",
+                    "type": "Model"
+                }
+            ],
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 536,
+            "description": "Selects the item in the collection that is passed.",
+            "itemtype": "method",
+            "name": "selectItem",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "A model that should be deselected.",
+                    "type": "Model"
+                }
+            ],
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 548,
+            "description": "Returns the visibility of the view.",
+            "itemtype": "method",
+            "name": "isVisible",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 559,
+            "description": "Shows the list view. Binds the event to hide the view if user clicks anywhere else.",
+            "itemtype": "method",
+            "name": "showView",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 583,
+            "description": "Hides the view and unbinds the events that were bound while showing the view.",
+            "itemtype": "method",
+            "name": "hideView",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 594,
+            "description": "Binds the hide events to hide the dropdown list whenever user clicks somewhere else.",
+            "itemtype": "method",
+            "name": "_bindHideEvent",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 611,
+            "description": "Unbinds the event that was bound on the document while showing the list.",
+            "itemtype": "method",
+            "name": "_unbindHideEvent",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 622,
+            "description": "Scrolls to the items that should be shown as highlighted whenever user is traversing\nin the list.",
+            "itemtype": "method",
+            "name": "_scrollToItem",
+            "params": [
+                {
+                    "name": "item",
+                    "description": "A model representing the item where the view should be scrolled.",
+                    "type": "Model"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 659,
+            "description": "Gets the visible items in the view.",
+            "itemtype": "method",
+            "name": "getVisibleItems",
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 670,
+            "description": "Clears the view. Resets the collection for ajax dropdown, deselects all items otherwise.",
+            "itemtype": "method",
+            "name": "clearView",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 683,
+            "description": "Disables the view. Undelegates the events.",
+            "itemtype": "method",
+            "name": "disableView",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 693,
+            "description": "Enables the view. Delegates the events.",
+            "itemtype": "method",
+            "name": "enableView",
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyCompView.js",
+            "line": 702,
+            "description": "Resets the data source of the view by resetting the data that is passed to the method.",
+            "itemtype": "method",
+            "name": "resetDataSource",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "An array of items that should be added after reset of the collection.",
+                    "type": "Array"
+                }
+            ],
+            "class": "DropdownBodyView"
+        },
+        {
+            "file": "views/ddBodyEmptyView.js",
+            "line": 1,
+            "description": "Created by Yashraj.C on 12/7/2015.",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyEmptyView.js",
+            "line": 31,
+            "description": "Click handler for the add new item.\nTriggers the add new item if the config is set to allow add new items.",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event object for the click event.",
+                    "type": "Object"
+                }
+            ],
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyItemView.js",
+            "line": 59,
+            "description": "Click handler for the body item.\nTriggers the itemClick that gets listened by the parent view.",
+            "itemtype": "method",
+            "name": "_handleItemClick",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyItemView.js",
+            "line": 76,
+            "description": "Handler for the action item click.\nGets the item config for the clicked action and triggers the event being listened by the parent view.",
+            "itemtype": "method",
+            "name": "_handleActionItemClick",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event object for the event.",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyItemView.js",
+            "line": 100,
+            "description": "A change attribute handler for the model.\nListening to the selected attribute of the model.\nUpdates the view whenever the model gets changed.",
+            "itemtype": "method",
+            "name": "_toggleModelSelection",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyItemView.js",
+            "line": 119,
+            "description": "A change attribute handler for the model.\nListening to the visible attribute of the model.\nUpdate the view whenever the view gets changed.",
+            "itemtype": "method",
+            "name": "_updateVisibility",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyItemView.js",
+            "line": 132,
+            "description": "Mouse over event handler for the view to manipulate the hover classes.",
+            "itemtype": "method",
+            "name": "_handleMouseOverEvent",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyItemView.js",
+            "line": 143,
+            "description": "Mouse out event handler for the view to manipulate the hover classes.",
+            "itemtype": "method",
+            "name": "_handleMouseOutEvent",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyItemView.js",
+            "line": 154,
+            "description": "Adds the hover class to the view.",
+            "itemtype": "method",
+            "name": "_addHoverClass",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddBodyItemView.js",
+            "line": 165,
+            "description": "Removes the hover class from the view.",
+            "itemtype": "method",
+            "name": "_removeHoverClass",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownBodyItemView"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 155,
+            "description": "Event triggers object that holds the keys for the events that are triggered within the view.\nThe same object gets passed to the header and body views and their children, just to have all the event\nnames available at just one place to avoid typos while development.",
+            "itemtype": "property",
+            "name": "eventTriggers",
+            "type": "{Object}",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 188,
+            "description": "Whenever you create an instance of the `DropdownView`, by default Marionette framework calls the `initialize`\nmethod of the view and passes whatever you have passed to the `DropdownView` constructor to the `initialize`\nmethod. These are the possible configurations that we can pass whenever we create an instance of the dropdown.",
+            "itemtype": "method",
+            "name": "initialize",
+            "params": [
+                {
+                    "name": "config",
+                    "description": "A config object",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "placeholder",
+                            "description": "String that gets used as a placeholder for the dropdown.",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "'Please Select'"
+                        },
+                        {
+                            "name": "multiSelect",
+                            "description": "Configuring dropdown as multi-select would let the user select\n     multiple items from the list. If not passed as `true` then the dropdown would act like a normal\n     dropdown with just single select facility and would let the user click on the it to open the list of options.",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "false"
+                        },
+                        {
+                            "name": "searchTriggerDelay",
+                            "description": "Number of milliseconds that the delay would be added before\n     the search inside the list of items would be triggered. If the ajax is configured the request would\n     be sent only after the specified milliseconds.",
+                            "type": "Number",
+                            "optional": true,
+                            "optdefault": "600"
+                        },
+                        {
+                            "name": "showClearIcon",
+                            "description": "Shows the clear icon next to the textbox of the dropdown. This\n     clear icon lets the user clear the content of the dropdown view's textbox. It should only be used when\n     the view is configured to be searchable by `searchable: true`.",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "false"
+                        },
+                        {
+                            "name": "data",
+                            "description": "This config is useful if you want to pass a local pre-populated data\n     source to the dropdown plugin. The dropdown will have the items that you speicify in the `data` array.\n     The format of the items in the array should be:\n\n    {\n        id: \"\",\n        text: \"\",\n        rawObject: { }\n    }\n\n* `id` param can be either `String` or `Number` which identifies the item uniquely.\n* `text` param can be either `String` or `Number` that would be displayed to the user.\n* `rawObject` param is an object. It gets returned as a part of selected item whenever we want the\n      selected items of the dropdown through `getSelectedItems()`. The purpose of this object is to pass\n      extra metadata to the items of the dropdown which we might want to use later on while operating on the\n      selected items.",
+                            "type": "Array",
+                            "optional": true,
+                            "optdefault": "[]"
+                        },
+                        {
+                            "name": "ajax",
+                            "description": "Option is useful when the data source of the dropdown is remote and you want the\n     items of the dropdown to be loaded as an when user types the characters. The options of the\n     `ajax` config are defined below:",
+                            "type": "Object",
+                            "props": [
+                                {
+                                    "name": "url",
+                                    "description": "the url where the ajax request should be made to fetch the data",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "type",
+                                    "description": "the type of the request to be made `post` / `get`",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "triggerChars",
+                                    "description": "the number indicating the minimum characters required by the user to\n     be typed to make an ajax call for the data.",
+                                    "type": "Number",
+                                    "optional": true,
+                                    "optdefault": "2"
+                                },
+                                {
+                                    "name": "requestDataFormatter",
+                                    "description": "The function that gets invoked before making an ajax call\n      to the server. The returned value from this function gets passed as request data to the server for\n      the request. The arguments that gets passed to this function are:",
+                                    "type": "Function"
+                                },
+                                {
+                                    "name": "requestDataFormatter.text",
+                                    "description": "It is the searched text that has been entered by the user.",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "responseDataFormatter",
+                                    "description": "The function that gets invoked before setting the data\n      for the dropdown that is sent by the server as a response of the dropdown request. You can use this function to process\n      the data that is being sent by the server to accommodate into the dropdown format. This function must\n      return an array of objects which will be shown as items in the list. And this objects must be in the same\n      format as `data`.",
+                                    "type": "Function"
+                                },
+                                {
+                                    "name": "responseDataFormatter.response",
+                                    "description": "The response object that is sent by the server.",
+                                    "type": "Object"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "noDataMessage",
+                            "description": "A string that would be displayed whenever user\n      searches for an item and that item is not present in the list.",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "'No Data Found'"
+                        },
+                        {
+                            "name": "allowNew",
+                            "description": "If you want to allow the user to type in and add new items - which\n      are not present in the list, pass this option as `true`. This config is only useful with `multiSelect: true`.\n      If passed as `true` user would get an option to add new items in the list for all those searches that\n      did not match any item.",
+                            "type": "Boolean",
+                            "optional": true,
+                            "optdefault": "false"
+                        },
+                        {
+                            "name": "allowNewText",
+                            "description": "If `allowNew` is set as `true` this text would be\n      displayed to user an an option in the list, which user can click on to add the new item in. Executes\n      the `beforeNewItemAdd` callback defined under `callbacks` config, and adds the item only if the\n      callback returns `true`.",
+                            "type": "String",
+                            "optional": true,
+                            "optdefault": "'Add as New Item'"
+                        },
+                        {
+                            "name": "footer",
+                            "description": "The list of items that should be shown as footer items to the list - like Open\n      Codebook option - in ezCAC working page. The item in the list should be in the format of the\n      following object:\n```javascript\n    {\n        itemKey: \"\",\n        html: \"\",\n        footerClick: function( dropdownViewInstance ) { }\n    }\n```\n* `itemKey` should be a `String` or `Number` which uniquely identifies the item.\n* `html` is the `String` that gets rendered in the DOM to display the footer item.\n* `footerClick` is the function that gets invoked whenever the footer item is clicked. The callback gets\n     executed with one parameter - that is the instance of the dropdown view.",
+                            "type": "Array",
+                            "optional": true,
+                            "optdefault": "null"
+                        },
+                        {
+                            "name": "selectedItems",
+                            "description": "The list of items that should be selected by default. It should\n      be of same format as `data` passed to the dropdown view.",
+                            "type": "Array",
+                            "optional": true,
+                            "optdefault": "null"
+                        },
+                        {
+                            "name": "onItemSelect",
+                            "description": "The callback function that gets executed whenever user selects\n      an item from the dropdown list. The method gets called with the following argument.",
+                            "type": "Function",
+                            "optional": true,
+                            "optdefault": "null",
+                            "props": [
+                                {
+                                    "name": "view",
+                                    "description": "The instance of the dropdown view.",
+                                    "type": "DropdownView"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "callbacks",
+                            "description": "The callbacks that can be passed to the view. There are two callbacks that\n     we can pass.",
+                            "type": "Object",
+                            "optional": true,
+                            "props": [
+                                {
+                                    "name": "beforeNewItemAdd",
+                                    "description": "The callback that gets fired for the multiSelect dropdown\n     with `allowNew` set as `true`. Whenever user tries to add a new item, if specified, then this callback gets executed\n     with the entered text as an argument. The newly item would only be added if the callback\n     returns `true`. The purpose of this is to perform any necessary validation before adding new item. The function\n     receives the following as its arguments.",
+                                    "type": "Function",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "beforeNewItemAdd.itemText",
+                                    "description": "A string indicating the item text that has been\n     entered by the user.",
+                                    "type": "String"
+                                },
+                                {
+                                    "name": "onKeyUp",
+                                    "description": "The callback that gets executed whenever user types something in\n     the dropdown. Useful to perform any logic as and when user types in the input box. It receives the following\n     arguments.",
+                                    "type": "Function",
+                                    "optional": true
+                                },
+                                {
+                                    "name": "onKeyUp.itemText",
+                                    "description": "The text that has been entered by the user.",
+                                    "type": "String"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 339,
+            "description": "An instance of the dropdown header view rendered inside the **header** region.",
+            "itemtype": "property",
+            "name": "headerView",
+            "type": "{DropdownHeaderView}",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 355,
+            "description": "An instance of the dropdown header view rendered inside the **body** region.",
+            "itemtype": "property",
+            "name": "ddBodyView",
+            "type": "{DropdownBodyView}",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 387,
+            "description": "Handler for the toggleOptionsList triggered by the headerView.\nHandles the show / hide for the dropdown body view.",
+            "itemtype": "method",
+            "name": "_handleToggleList",
+            "params": [
+                {
+                    "name": "forceToggle",
+                    "description": "If passed as `true` the dropdown will be forcefully toggled.",
+                    "type": "Boolean"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 431,
+            "description": "Initializes the default configuration for the dropdown.",
+            "itemtype": "method",
+            "name": "_initDefaultConfig",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 439,
+            "description": "An instance variable of the view which holds all the configuration settings that were passed at the time\nof initialization as well as some private configurations set by the view.",
+            "itemtype": "property",
+            "name": "config",
+            "type": "{Object}",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 452,
+            "description": "Returns the selected item(s) for the dropdown.",
+            "itemtype": "method",
+            "name": "getSelectedItems",
+            "return": {
+                "description": "Method returns an array for single select dropdown as well - with just one item.\nThe item in the returned array will have following properties:\n*    `id` the unique id of the dropdown item\n*    `text` the text of the dropdown\n*    `rawObject` {Object} the raw object that was passed to the item - might contain some meta-data about\n         the item.",
+                "type": "Array"
+            },
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 467,
+            "description": "Sets the items specified as selected items in the dropdown view.",
+            "itemtype": "method",
+            "name": "setSelectedItems",
+            "params": [
+                {
+                    "name": "items",
+                    "description": "An array of items that should be set as selected. It should be of same format as `data`.",
+                    "type": "Array"
+                }
+            ],
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 477,
+            "description": "A function that returns the text that has been entered in the input box of the dropdown while searching.",
+            "itemtype": "method",
+            "name": "getSearchedTerm",
+            "return": {
+                "description": "The text that has been typed by the user in the searchbox.",
+                "type": "String"
+            },
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 486,
+            "description": "Handler for the `textSearch` event triggered by the headerView. Invokes the respective method of\nthe body view so that the items displayed in the body view can be filtered based on the text that has been\npassed.",
+            "itemtype": "method",
+            "name": "_handleTextSearch",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "A string to search in the list.",
+                    "type": "String"
+                },
+                {
+                    "name": "selectedItems",
+                    "description": "Whenever ajax config is defined, this array is used to show the returned items\n     from the server as selected.",
+                    "type": "Array"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 501,
+            "description": "Handler for the `traverseListOrSelectItem` triggered by the headerView. Invokes body view's function to\ntraverse through the list.",
+            "itemtype": "method",
+            "name": "_handleTraverseList",
+            "params": [
+                {
+                    "name": "keyCode",
+                    "description": "A number indicating the key pressed.",
+                    "type": "Number"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 513,
+            "description": "Handler for the `bodyItemClick` triggered by the bodyView. Updates the header view to reflect the selection.\nInvokes the `config.onItemSelect` method if specified.",
+            "itemtype": "method",
+            "name": "_handleBodyItemClick",
+            "params": [
+                {
+                    "name": "clickedItemView",
+                    "description": "A view representing the item that was clicked.",
+                    "type": "View"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 530,
+            "description": "Clears the headerView and bodyView. Removes all the selections that are done.",
+            "itemtype": "method",
+            "name": "clearView",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 543,
+            "description": "Handler for the `addNewItem` triggered by the bodyView. Invokes the headerview's method for addition of new\nitem.",
+            "itemtype": "method",
+            "name": "_handleAddNewItem",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 555,
+            "description": "Handles the `footerClick` triggered by the dropdown body view.\nInvokes the footer item click if specified in the `config`.",
+            "itemtype": "method",
+            "name": "_handleFooterClick",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 573,
+            "description": "Handler for the `deselectItem` triggered by the headerView. Invokes bodyViews method to deselect the item\nthat is passed to the method.",
+            "itemtype": "method",
+            "name": "_deselectItem",
+            "params": [
+                {
+                    "name": "removedModel",
+                    "description": "A model representing the item that should be deselected.",
+                    "type": "Model"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 586,
+            "description": "Handler for the clearing single select. It'll invoke the passed `config.onClearSelectedItem` handler\nif there is any.",
+            "itemtype": "method",
+            "name": "_handleClearSingleSelect",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 599,
+            "description": "Handler for the selectItem triggered by the headerView. Invokes the body view's method passing the model.",
+            "itemtype": "method",
+            "name": "_selectItem",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "A model representing the item that should be deselected.",
+                    "type": "Model"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 613,
+            "description": "Handler for the hideOptionsList triggered by the headerView. Invokes the body view's method to perform\naction.",
+            "itemtype": "method",
+            "name": "hideOptionsList",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 623,
+            "description": "A method which checks whether the dropdown view is disabled or not.",
+            "itemtype": "method",
+            "name": "isDisabled",
+            "return": {
+                "description": "",
+                "type": "boolean|exports.constants.isDisable"
+            },
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 634,
+            "description": "A method to disabled the dropdown view. Disabled the body and header views respectively.",
+            "itemtype": "method",
+            "name": "disableView",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 655,
+            "description": "A method to enable a dropdown view. Invokes methods to enable the header and body views.",
+            "itemtype": "method",
+            "name": "enableView",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 675,
+            "description": "A method to focus on the input text of the dropdown.",
+            "itemtype": "method",
+            "name": "focusInput",
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 684,
+            "description": "To invoke the search functionality of the dropdown through code.\nIt'll be used in ajax support mostly.",
+            "itemtype": "method",
+            "name": "searchTerm",
+            "params": [
+                {
+                    "name": "term",
+                    "description": "A term represents text.",
+                    "type": "String"
+                }
+            ],
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddContainerLayoutView.js",
+            "line": 697,
+            "description": "A method to reset the data source of the dropdown with the newly passed data source. Resets the collection\nof the items. It will not bring any impact on the header view, hence the selected item(s) will stay as is,\neven if they don't exist in the new data source.",
+            "itemtype": "method",
+            "name": "resetDataSource",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "The list of items that should be displayed after reset. This data source will have to be of the same\n     format as we have in the `data` in the coniguration of `initialize` method.",
+                    "type": "Array"
+                }
+            ],
+            "class": "DropdownView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 25,
+            "description": "A property that holds the selected item",
+            "itemtype": "property",
+            "name": "selectedItem",
+            "type": "{Object}",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 88,
+            "description": "Returns the selected items array.",
+            "itemtype": "method",
+            "name": "getSelectedItems",
+            "return": {
+                "description": "Items that are selected.",
+                "type": "Array"
+            },
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 98,
+            "description": "Sets the items specified as selected items in the dropdown view.",
+            "itemtype": "method",
+            "name": "setSelectedItems",
+            "params": [
+                {
+                    "name": "items",
+                    "description": "An array of items that should be set as selected.",
+                    "type": "Array"
+                }
+            ],
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 108,
+            "description": "A function that returns the text that has been entered in the\ninput box of the dropdown while searching.",
+            "itemtype": "method",
+            "name": "getEnteredText",
+            "return": {
+                "description": "Entered text",
+                "type": "String"
+            },
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 119,
+            "description": "Handler for the toggleOptionsList triggered by the selectedTagsView.\nTriggers the event that is listened by the ddContainerLayoutView.",
+            "itemtype": "method",
+            "name": "_handleListToggle",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 131,
+            "description": "Invokes the selectedTagsView's method to update the view of the current selected items.",
+            "itemtype": "method",
+            "name": "updateHeaderView",
+            "params": [
+                {
+                    "name": "selectedItem",
+                    "description": "A model representing the item that should be added to the selected items list.",
+                    "type": "Model"
+                }
+            ],
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 143,
+            "description": "Handler for the traverseListOrSelectItem triggered by the selectedTagsView.\nTriggers the event that is listened by the ddContainerLayoutView.",
+            "itemtype": "method",
+            "name": "_handleTraverseListOrSelectItem",
+            "params": [
+                {
+                    "name": "eventCode",
+                    "description": "A number indicating the eventCode for the key pressed.",
+                    "type": "Number"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 158,
+            "description": "Handler for the textSearch triggered by the selectedTagsView.\nTriggers the event that is listened by the ddContainerLayoutView.",
+            "itemtype": "method",
+            "name": "_handleTextSearch",
+            "params": [
+                {
+                    "name": "searchedText",
+                    "description": "A string that should be used as a string to search in the item list.",
+                    "type": "String"
+                },
+                {
+                    "name": "selectedItems",
+                    "description": "An array of selected items to be used by the body view to highlight the new results\n     which have been returned from the server",
+                    "type": "Array"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 176,
+            "description": "Handler for the hideOptionsList triggered by the selectedTagsView.\nTriggers the event that is listened by the ddContainerLayoutView.",
+            "itemtype": "method",
+            "name": "_handleHideOptionsList",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 189,
+            "description": "Event handler for the search icon click.",
+            "itemtype": "method",
+            "name": "_handleSearchIcoClick",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 200,
+            "description": "Adds a new item to the selected tags. Gets called by the parent view.",
+            "itemtype": "method",
+            "name": "addNewItem",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 210,
+            "description": "Handler for the deselectItem triggered by the selectedTagsView.\nTriggers the event that is listened by the ddContainerLayoutView.",
+            "itemtype": "method",
+            "name": "_removeSelectedItemTag",
+            "params": [
+                {
+                    "name": "removedModel",
+                    "description": "A model representing the item that should be deselected.",
+                    "type": "Model"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 225,
+            "description": "Handler for the selectItem triggered by the selectedTagsView.\nTriggers the event that is listened by the ddContainerLayoutView.",
+            "itemtype": "method",
+            "name": "_addSelectedItemTag",
+            "params": [
+                {
+                    "name": "model",
+                    "description": "A model representing the item that should be deselected.",
+                    "type": "Model"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 241,
+            "description": "A method which focuses on the input text of the dropdown.",
+            "itemtype": "method",
+            "name": "focusInput",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 250,
+            "description": "A method to clear the view.",
+            "itemtype": "method",
+            "name": "clearView",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 260,
+            "description": "A method to search the item in the list.\nIt'll be called from parent view.",
+            "itemtype": "method",
+            "name": "searchTerm",
+            "params": [
+                {
+                    "name": "term",
+                    "description": "A term represents text."
+                }
+            ],
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 273,
+            "description": "A handler for the clearView triggered by the tags view.",
+            "itemtype": "method",
+            "name": "_handleClearView",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 284,
+            "description": "Handler for the handleClearSingleSelect triggered by the selectedTagsView.\nTriggers the event that is listened by the ddContainerLayoutView.",
+            "itemtype": "method",
+            "name": "_handleClearSingleSelect",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 297,
+            "description": "This method is to disable dropdown programmatically.",
+            "itemtype": "method",
+            "name": "disableView",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/ddHeaderLayoutView.js",
+            "line": 310,
+            "description": "This method is to enable dropdown programmatically.",
+            "itemtype": "method",
+            "name": "enableView",
+            "class": "DropdownHeaderView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagItemView.js",
+            "line": 31,
+            "description": "Click handler for the remove icon to remove the tag that is clicked.",
+            "itemtype": "method",
+            "name": "_handleRemoveIconClick",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagItemView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagItemView.js",
+            "line": 42,
+            "description": "A method to disable the view.",
+            "itemtype": "method",
+            "name": "disableView",
+            "class": "DropdownSelectedTagItemView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagItemView.js",
+            "line": 51,
+            "description": "A method to enable the view.",
+            "itemtype": "method",
+            "name": "enableView",
+            "class": "DropdownSelectedTagItemView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 22,
+            "description": "An object for constants used in this view",
+            "type": "{Object}",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 133,
+            "description": "Click event handler for the list toggle button click.\nTriggers the event that is listened by the parent view - ddHeaderLayoutView.",
+            "itemtype": "method",
+            "name": "_handleListToggleClick",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 145,
+            "description": "Click event handler for the input box present in the view.\nTriggers the event that is listened by the parent view - ddHeaderLayoutView.",
+            "itemtype": "method",
+            "name": "_handleInputClick",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event object for event.",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 161,
+            "description": "Key up event handler for the input box present in the view.\nChecks the key that was pressed and triggers the respective event based on the key\npressed.",
+            "itemtype": "method",
+            "name": "_handleInputKeyUp",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event object for the event.",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 210,
+            "description": "A method to check whether the pressed key should trigger the search inside the dropdown or not.\nCurrently the method returns `true` if\n* Any of the number, alphabet or utility key (backspace, delete) is pressed\n* Paste event is detected\n\nMethod returns `false` if\n* If with alphabet or utility - alt or ctrl key is pressed",
+            "itemtype": "method",
+            "name": "_isSearchTriggerKey",
+            "params": [
+                {
+                    "name": "eventObject",
+                    "description": "JavaScript event object containing the information about the event",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 242,
+            "description": "Updates selected item for the view.\nIf view is single select, updates the text box's value as the selected value, else\nadds the selected item to the selected tags view.",
+            "itemtype": "method",
+            "name": "updateSelectedItem",
+            "params": [
+                {
+                    "name": "selectedItem",
+                    "description": "A model representing the item that needs to be selected.",
+                    "type": "Backbone.Model"
+                }
+            ],
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 278,
+            "description": "Removes the item from the selected tags.\nFinds the item that was passed from the collection and removes it from the collection.\nView gets updated eventually.",
+            "itemtype": "method",
+            "name": "_removeTag",
+            "params": [
+                {
+                    "name": "modelToRemove",
+                    "description": "A model that needs to be removed from the view.",
+                    "type": "Backbone.Model"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 303,
+            "description": "Gets called whenever user wants to add an item that is not present in the list.\nInvokes the beforeNewItemAdd handler if specified and adds only if the callback returns true.",
+            "itemtype": "method",
+            "name": "addNewItem",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 332,
+            "description": "Adds the new item to the selected tags list.",
+            "itemtype": "method",
+            "name": "_addItemToCollection",
+            "params": [
+                {
+                    "name": "inputText",
+                    "description": "A string indicating the item that should be added to the list.",
+                    "type": "String"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 349,
+            "description": "Handles the removeTag event that gets triggered by the child view.\nTriggers the event to deselect the item in the list of items.",
+            "itemtype": "method",
+            "name": "_handleRemoveTag",
+            "params": [
+                {
+                    "name": "itemView",
+                    "description": "A view that triggered the removeTag event.",
+                    "type": "View"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 366,
+            "description": "Returns the selected items in the view.",
+            "itemtype": "method",
+            "name": "getSelectedItems",
+            "return": {
+                "description": "An array of the items that are selected.",
+                "type": "Array"
+            },
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 397,
+            "description": "Updates the selected items based on the items list provided.",
+            "itemtype": "method",
+            "name": "setSelectedItems",
+            "params": [
+                {
+                    "name": "items",
+                    "description": "An array of items that should be set as selected.",
+                    "type": "Array"
+                }
+            ],
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 431,
+            "description": "Handles the clear icon click for the input box. Clears the input value and resets the selected item config\nif the dropdown is single select.",
+            "params": [
+                {
+                    "name": "event",
+                    "description": ""
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 455,
+            "description": "A focus event handler for the input box of the dropdown.\nChecks the dropdown's config and selects the entire text of the input if needed.",
+            "itemtype": "method",
+            "name": "_handleInputFocus",
+            "params": [
+                {
+                    "name": "event",
+                    "description": "Event object of the event.",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 473,
+            "description": "A function that returns the text that has been entered in the\ninput box of the dropdown while searching.",
+            "itemtype": "method",
+            "name": "getEnteredText",
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 486,
+            "description": "A method which focuses on the input text of the dropdown.\nAdded a set timeout as the item may not have been rendered in the dom whenever\nfocus is immediately called after the render of dropdown.",
+            "itemtype": "method",
+            "name": "focusInput",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 502,
+            "description": "Sets the value for the input control.",
+            "itemtype": "method",
+            "name": "_setInputValue",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "A value that should be set for the input.",
+                    "type": "String"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 515,
+            "description": "Adds the items to the collection.",
+            "itemtype": "method",
+            "name": "_addTags",
+            "params": [
+                {
+                    "name": "items",
+                    "description": "An array of the items that should be added in the collection.",
+                    "type": "Array"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 528,
+            "description": "Focuses the input control.",
+            "itemtype": "method",
+            "name": "_focusInput",
+            "access": "private",
+            "tagname": "",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 541,
+            "description": "Clears the input text's value.\nClears the selected items collection to remove all the selected items.",
+            "itemtype": "method",
+            "name": "clearView",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 554,
+            "description": "This method is to call search functionality programmatically.\nIt'll be called from parent view.",
+            "itemtype": "method",
+            "name": "searchTerm",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "A term represents text.",
+                    "type": "String"
+                }
+            ],
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 581,
+            "description": "This method is to disable dropdown programmatically.",
+            "itemtype": "method",
+            "name": "disableView",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        },
+        {
+            "file": "views/selectedTagsCompView.js",
+            "line": 595,
+            "description": "This method is to enable dropdown programmatically.",
+            "itemtype": "method",
+            "name": "enableView",
+            "class": "DropdownSelectedTagsView",
+            "module": "Dropdown"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " collections/bodyItemsCollection.js:257"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " collections/bodyItemsCollection.js:354"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " collections/selectedTags.js:49"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/ddBodyCompView.js:436"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/ddBodyCompView.js:548"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/ddBodyCompView.js:659"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/ddContainerLayoutView.js:452"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/ddContainerLayoutView.js:477"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/ddContainerLayoutView.js:623"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/ddHeaderLayoutView.js:88"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/ddHeaderLayoutView.js:108"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/selectedTagsCompView.js:210"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/selectedTagsCompView.js:366"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " views/selectedTagsCompView.js:473"
+        },
+        {
+            "message": "Missing item type\nSpecified the comparator so that selected item tags always appear in the sorted manner",
+            "line": " collections/selectedTags.js:19"
+        },
+        {
+            "message": "Missing item type\nA method that serializes the collection items in the array and in the correct format that is needed and\nreturns it.",
+            "line": " collections/selectedTags.js:49"
+        },
+        {
+            "message": "Missing item type\nA constant for the keycodes used in the view.",
+            "line": " views/ddBodyCompView.js:24"
+        },
+        {
+            "message": "Missing item type\nFor a composite view, only when the collection is re-rendered, apply the tooltip to the items",
+            "line": " views/ddBodyCompView.js:190"
+        },
+        {
+            "message": "Missing item type\nClick handler for the footer item click.\nChecks if the footer config was provided and if yes, triggers the click event of the footer.",
+            "line": " views/ddBodyCompView.js:283"
+        },
+        {
+            "message": "Missing item type\nCreated by Yashraj.C on 12/7/2015.",
+            "line": " views/ddBodyEmptyView.js:1"
+        },
+        {
+            "message": "Missing item type\nClick handler for the add new item.\nTriggers the add new item if the config is set to allow add new items.",
+            "line": " views/ddBodyEmptyView.js:31"
+        },
+        {
+            "message": "Missing item type\nAn object for constants used in this view",
+            "line": " views/selectedTagsCompView.js:22"
+        },
+        {
+            "message": "Missing item type\nHandles the clear icon click for the input box. Clears the input value and resets the selected item config\nif the dropdown is single select.",
+            "line": " views/selectedTagsCompView.js:431"
+        }
+    ]
+}

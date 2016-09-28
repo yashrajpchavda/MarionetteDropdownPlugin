@@ -38,10 +38,21 @@
 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/DropdownBodyItemModel.html">DropdownBodyItemModel</a></li>
+                                <li><a href="../classes/DropdownBodyItemsCollection.html">DropdownBodyItemsCollection</a></li>
+                                <li><a href="../classes/DropdownBodyItemView.html">DropdownBodyItemView</a></li>
+                                <li><a href="../classes/DropdownBodyView.html">DropdownBodyView</a></li>
+                                <li><a href="../classes/DropdownHeaderView.html">DropdownHeaderView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemModel.html">DropdownSelectedTagItemModel</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemsCollection.html">DropdownSelectedTagItemsCollection</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemView.html">DropdownSelectedTagItemView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagsView.html">DropdownSelectedTagsView</a></li>
+                                <li><a href="../classes/DropdownView.html">DropdownView</a></li>
                             </ul>
 
 
                             <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Dropdown.html">Dropdown</a></li>
                             </ul>
                         </div>
                     </div>
@@ -80,7 +91,12 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * Created by Yashraj.C on 12/21/2015.
+ * Dropdown body items&#x27; collection. A collection that is used by the &#x60;{{#crossLink &quot;DropdownBodyView&quot;}}{{/crossLink}}&#x60;
+ * composite view.
+ *
+ * @class DropdownBodyItemsCollection
+ *
+ * @constructor
  */
 
 define( [
@@ -96,14 +112,29 @@ define( [
 
         model: BodyItemModel,
 
-        comparator: &#x27;id&#x27;,
+        // removed comparator as it didn&#x27;t make sense to sort the items by the id
+        // as sometimes we just want to display the items as - is, because they are already sorted by the server
+//        comparator: &#x27;id&#x27;,
 
+        /**
+         * Deselects all the items in the collection.
+         *
+         * @method deSelectAll
+         *
+         */
         deSelectAll: function () {
             this.each( function ( item ) {
                 item.set( &#x27;selected&#x27;, false );
             } );
         },
 
+        /**
+         * Selects the model that has been passed as an argument.
+         *
+         * @method selectSingleSelectModel
+         *
+         * @param {DropdownSelectedTagItemModel} model A model to be selected
+         */
         selectSingleSelectModel: function ( model ) {
             model.set( &#x27;selected&#x27;, true );
 
@@ -111,6 +142,15 @@ define( [
             this._removeHighlightTagsFromAll();
         },
 
+        /**
+         * Selects the multiSelect model that is passed as an argument, it actually toggles the state of the model, as
+         * this method is used by the multiSelect dropdown to toggle the state. After selection, it removes the highlights
+         * from the list items.
+         *
+         * @method selectMultiSelectModel
+         *
+         * @param {DropdownSelectedTagItemModel} model A model whose state needs to be toggled
+         */
         selectMultiSelectModel: function ( model ) {
             // toggle the selection
             model.set( &#x27;selected&#x27;, !model.get( &#x27;selected&#x27; ) );
@@ -119,11 +159,27 @@ define( [
             this._removeHighlightTagsFromAll();
         },
 
+        /**
+         * Removes the highlights from the model texts that are added while user had searched for those items.
+         *
+         * @method _removeHighlightTags
+         *
+         * @param {DropdownSelectedTagItemModel} model A model the highlights should be removed from.
+         *
+         * @private
+         */
         _removeHighlightTags: function ( model ) {
             model.set( &#x27;text&#x27;, model.get( &#x27;text&#x27; ).replace( /&lt;strong&gt;/gi, &#x27;&#x27; ) );
             model.set( &#x27;text&#x27;, model.get( &#x27;text&#x27; ).replace( /&lt;\/strong&gt;/gi, &#x27;&#x27; ) );
         },
 
+        /**
+         * Removes highlights from all the models present in the collection.
+         *
+         * @method _removeHighlightTagsFromAll
+         *
+         * @private
+         */
         _removeHighlightTagsFromAll: function () {
 
             var that = this;
@@ -134,12 +190,36 @@ define( [
 
         },
 
+        /**
+         * Shows all the items present in the collection by updating the attribute of the model.
+         *
+         * @method showAllItems
+         *
+         */
         showAllItems: function () {
             this.each( function ( item ) {
                 item.set( &#x27;visible&#x27;, true );
             } );
         },
 
+        /**
+         * Filters the items of the dropdown.
+         * * For non-ajax dropdown, it iterates through all the items present in the list, and either marks the item
+         *   visible or invisible based on the text search. Executes the callback if specified.
+         * * For ajax dropdown, makes and ajax call to the server on the specified &#x60;url&#x60;, by executing the &#x60;requestDataFormatter&#x60;
+         *   callback to get the request parameters and executes the &#x60;responseDataFormatter&#x60; callback to format the response
+         *   received from the server.
+         *
+         * @method filterItems
+         *
+         * @param {String} text A string that should be used to filter the items of the collection
+         * @param {Array} selectedItems The list of selected items that gets used to select the items after they have been
+         *      received from server to show them as selected. Used mostly in case of multiSelect mode.
+         * @param {Object} config The dropdown config.
+         * @param {Function} callback The callback function that gets executed after successful filtration happens on
+         *      the items.
+         *
+         */
         filterItems: function ( text, selectedItems, config, callback ) {
 
             var ajaxConfig = config.ajax,
@@ -203,19 +283,19 @@ define( [
                     success: function ( response ) {
 
                         var processedResponse;
-                        if ( response &amp;&amp; response.header &amp;&amp; response.header.success ) {
 
-                            response.data = response.data || [];
-
-                            processedResponse = ajaxConfig.responseDataFormatter( response.data );
-
-                            that._updateCollectionItemsPostResponse( text, processedResponse, selectedItems );
-
-                            if ( callback ) {
-                                callback();
-                            }
-
+                        if( typeof ajaxConfig.responseDataFormatter == &quot;function&quot; ){
+                            processedResponse = ajaxConfig.responseDataFormatter( response ) || [];
+                        }else {
+                            processedResponse = response || [];
                         }
+
+                        that._updateCollectionItemsPostResponse( text, processedResponse, selectedItems );
+
+                        if ( callback ) {
+                            callback();
+                        }
+
                         that.trigger( &#x27;hideLoader&#x27; );
 
                     },
@@ -228,6 +308,18 @@ define( [
 
         },
 
+        /**
+         * Method that gets executed by the &#x60;filterItems&#x60; on a successful ajax from the server. It finds if the returned
+         * items from the server matches with the text specified and highlights them. It also sets the returned items as
+         * selected if any of them matches with the items specified in selectedItems.
+         *
+         * @method _updateCollectionItemsPostResponse
+         *
+         * @param {String} text A text that was searched.
+         * @param {Object} response Response from the server
+         * @param {Array} selectedItems Existing selected items in the list.
+         * @private
+         */
         _updateCollectionItemsPostResponse: function ( text, response, selectedItems ) {
 
             selectedItems = selectedItems || [];
@@ -254,8 +346,20 @@ define( [
 
         },
 
+        /**
+         * Sets the default ajax config before making an ajax call to server to reload the items based on what user
+         * searches in the dropdown.
+         *
+         * @method _processAjaxConfig
+         *
+         * @param {String} text A string that was searched by the user.
+         * @param {Object} config dropdown configuration object.
+         * @returns {Object}
+         * @private
+         */
         _processAjaxConfig: function ( text, config ) {
 
+            // set the default requestDataFormatter if not specified
             if ( !config.requestDataFormatter ) {
                 config[ &#x27;requestDataFormatter&#x27; ] = function ( text ) {
                     return {
@@ -264,12 +368,14 @@ define( [
                 };
             }
 
+            // set the default responseDataFormatter if not specified
             if ( !config.responseDataFormatter ) {
                 config[ &#x27;responseDataFormatter&#x27; ] = function ( response ) {
                     return response;
                 }
             }
 
+            // set the default triggerChars if not specified
             if ( !config.triggerChars ) {
                 config[ &#x27;triggerChars&#x27; ] = 2;
             }
@@ -278,6 +384,14 @@ define( [
 
         },
 
+        /**
+         * Deselects the model that has been received as argument. If id is available, it searches with id, or text
+         * otherwise.
+         *
+         * @method deSelectItem
+         *
+         * @param {DropdownSelectedTagItemModel} removedModel A model that should be set as deselected.
+         */
         deSelectItem: function ( removedModel ) {
 
             var model;
@@ -302,8 +416,10 @@ define( [
 
         /**
          * Searches the item in the collection and marks it as selected.
-         * @param {Backbone.Model} modelParam
-         *      A model which should be searched in the list.
+         *
+         * @method selectItem
+         *
+         * @param {DropdownSelectedTagItemModel} modelParam A model that should be selected.
          */
         selectItem: function ( modelParam ) {
 
@@ -326,6 +442,14 @@ define( [
             }
 
         },
+
+        /**
+         * Returns the array of visible items from the collection.
+         *
+         * @method getVisibleItems
+         *
+         * @returns {Array}
+         */
         getVisibleItems: function() {
             return this.where( {
                 visible: true

@@ -1,5 +1,9 @@
 /**
- * Created by Yashraj.C on 12/4/2015.
+ * This view renders the individual item in the selected tags collection.
+ *
+ * @class DropdownSelectedTagItemView
+ *
+ * @constructor
  */
 
 define( [
@@ -21,22 +25,34 @@ define( [
         },
 
         events: {
-            'click @ui.removeIco': 'handleRemoveIconClick'
+            'click @ui.removeIco': '_handleRemoveIconClick'
         },
 
         /**
          * Click handler for the remove icon to remove the tag that is clicked.
-         * @param {Object} event
-         *      An event object for the item that needs to be removed.
+         *
+         * @method _handleRemoveIconClick
+         *
+         * @private
          */
-        handleRemoveIconClick: function () {
+        _handleRemoveIconClick: function () {
             this.trigger( 'removeTag' );
         },
 
+        /**
+         * A method to disable the view.
+         *
+         * @method disableView
+         */
         disableView : function () {
             this.undelegateEvents();
         },
 
+        /**
+         * A method to enable the view.
+         *
+         * @method enableView
+         */
         enableView : function () {
             this.delegateEvents();
         }

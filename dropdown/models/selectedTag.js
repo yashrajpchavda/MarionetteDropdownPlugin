@@ -1,5 +1,9 @@
 /**
- * Created by Yashraj.C on 1/1/2016.
+ * Dropdown selected tag item's model.
+ *
+ * @class DropdownSelectedTagItemModel
+ *
+ * @constructor
  */
 
 define( [
@@ -8,6 +12,12 @@ define( [
 ], function ( _, Backbone ) {
 
     return Backbone.Model.extend( {
+
+        /**
+         * The defaults property that comes along with the backbone models.
+         *
+         * @property defaults
+         */
         defaults: {
             selected: false,
             visible: true

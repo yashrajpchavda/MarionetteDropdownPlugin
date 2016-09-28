@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DropdownSelectedTagsView - The Dropdown API</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="The Dropdown API" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/DropdownBodyItemModel.html">DropdownBodyItemModel</a></li>
+                                <li><a href="../classes/DropdownBodyItemsCollection.html">DropdownBodyItemsCollection</a></li>
+                                <li><a href="../classes/DropdownBodyItemView.html">DropdownBodyItemView</a></li>
+                                <li><a href="../classes/DropdownBodyView.html">DropdownBodyView</a></li>
+                                <li><a href="../classes/DropdownHeaderView.html">DropdownHeaderView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemModel.html">DropdownSelectedTagItemModel</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemsCollection.html">DropdownSelectedTagItemsCollection</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemView.html">DropdownSelectedTagItemView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagsView.html">DropdownSelectedTagsView</a></li>
+                                <li><a href="../classes/DropdownView.html">DropdownView</a></li>
+                            </ul>
+
+
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Dropdown.html">Dropdown</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+
+                </div>
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>DropdownSelectedTagsView Class</h1>
+<div class="box meta">
+
+        <div class="extends">
+            Extends Marionette.CompositeView
+        </div>
+
+        <div class="foundat">
+            Defined in: <a href="../files/views_selectedTagsCompView.js.html#l1"><code>views&#x2F;selectedTagsCompView.js:1</code></a>
+        </div>
+
+            Module: <a href="../modules/Dropdown.html">Dropdown</a>
+
+</div>
+
+
+<div class="box intro">
+    <p>A view that renders all the selected items tags and the input box to search the items. It has different behaviour
+based on single select or multi select. Renders itself accordingly. Uses <code><a href="../classes/DropdownSelectedTagItemsCollection.html" class="crosslink">DropdownSelectedTagItemsCollection</a></code>
+as a <code>collection</code> and <code><a href="../classes/DropdownSelectedTagItemView.html" class="crosslink">DropdownSelectedTagItemView</a></code> as an <code>childView</code>.</p>
+
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_DropdownSelectedTagsView" class="method item">
+    <h3 class="name"><code>DropdownSelectedTagsView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l1"><code>views&#x2F;selectedTagsCompView.js:1</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+
+    </div>
+
+
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                            <li class="index-item method private">
+                                <a href="#method__addItemToCollection">_addItemToCollection</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__addTags">_addTags</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__focusInput">_focusInput</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleInputClick">_handleInputClick</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleInputFocus">_handleInputFocus</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleInputKeyUp">_handleInputKeyUp</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleListToggleClick">_handleListToggleClick</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleRemoveTag">_handleRemoveTag</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__isSearchTriggerKey">_isSearchTriggerKey</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__removeTag">_removeTag</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__setInputValue">_setInputValue</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_addNewItem">addNewItem</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_clearView">clearView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_disableView">disableView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_enableView">enableView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_focusInput">focusInput</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getEnteredText">getEnteredText</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getSelectedItems">getSelectedItems</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_searchTerm">searchTerm</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setSelectedItems">setSelectedItems</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_updateSelectedItem">updateSelectedItem</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method__addItemToCollection" class="method item private">
+    <h3 class="name"><code>_addItemToCollection</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>inputText</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l332"><code>views&#x2F;selectedTagsCompView.js:332</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Adds the new item to the selected tags list.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">inputText</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+                    <div class="param-description">
+                        <p>A string indicating the item that should be added to the list.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__addTags" class="method item private">
+    <h3 class="name"><code>_addTags</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>items</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l515"><code>views&#x2F;selectedTagsCompView.js:515</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Adds the items to the collection.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">items</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+                    <div class="param-description">
+                        <p>An array of the items that should be added in the collection.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__focusInput" class="method item private">
+    <h3 class="name"><code>_focusInput</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l528"><code>views&#x2F;selectedTagsCompView.js:528</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Focuses the input control.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__handleInputClick" class="method item private">
+    <h3 class="name"><code>_handleInputClick</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>event</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l145"><code>views&#x2F;selectedTagsCompView.js:145</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Click event handler for the input box present in the view.
+Triggers the event that is listened by the parent view - ddHeaderLayoutView.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>Event object for event.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleInputFocus" class="method item private">
+    <h3 class="name"><code>_handleInputFocus</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>event</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l455"><code>views&#x2F;selectedTagsCompView.js:455</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A focus event handler for the input box of the dropdown.
+Checks the dropdown's config and selects the entire text of the input if needed.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>Event object of the event.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleInputKeyUp" class="method item private">
+    <h3 class="name"><code>_handleInputKeyUp</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>event</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l161"><code>views&#x2F;selectedTagsCompView.js:161</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Key up event handler for the input box present in the view.
+Checks the key that was pressed and triggers the respective event based on the key
+pressed.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">event</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>Event object for the event.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleListToggleClick" class="method item private">
+    <h3 class="name"><code>_handleListToggleClick</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l133"><code>views&#x2F;selectedTagsCompView.js:133</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Click event handler for the list toggle button click.
+Triggers the event that is listened by the parent view - ddHeaderLayoutView.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__handleRemoveTag" class="method item private">
+    <h3 class="name"><code>_handleRemoveTag</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>itemView</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l349"><code>views&#x2F;selectedTagsCompView.js:349</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handles the removeTag event that gets triggered by the child view.
+Triggers the event to deselect the item in the list of items.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">itemView</code>
+                        <span class="type">View</span>
+
+
+                    <div class="param-description">
+                        <p>A view that triggered the removeTag event.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__isSearchTriggerKey" class="method item private">
+    <h3 class="name"><code>_isSearchTriggerKey</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>eventObject</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+        </span>
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l210"><code>views&#x2F;selectedTagsCompView.js:210</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method to check whether the pressed key should trigger the search inside the dropdown or not.
+Currently the method returns <code>true</code> if</p>
+<ul>
+<li>Any of the number, alphabet or utility key (backspace, delete) is pressed</li>
+<li>Paste event is detected</li>
+</ul>
+<p>Method returns <code>false</code> if</p>
+<ul>
+<li>If with alphabet or utility - alt or ctrl key is pressed</li>
+</ul>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">eventObject</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>JavaScript event object containing the information about the event</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method__removeTag" class="method item private">
+    <h3 class="name"><code>_removeTag</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>modelToRemove</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l278"><code>views&#x2F;selectedTagsCompView.js:278</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Removes the item from the selected tags.
+Finds the item that was passed from the collection and removes it from the collection.
+View gets updated eventually.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">modelToRemove</code>
+                        <span class="type">Backbone.Model</span>
+
+
+                    <div class="param-description">
+                        <p>A model that needs to be removed from the view.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__setInputValue" class="method item private">
+    <h3 class="name"><code>_setInputValue</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>text</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l502"><code>views&#x2F;selectedTagsCompView.js:502</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the value for the input control.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">text</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+                    <div class="param-description">
+                        <p>A value that should be set for the input.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_addNewItem" class="method item">
+    <h3 class="name"><code>addNewItem</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l303"><code>views&#x2F;selectedTagsCompView.js:303</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Gets called whenever user wants to add an item that is not present in the list.
+Invokes the beforeNewItemAdd handler if specified and adds only if the callback returns true.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_clearView" class="method item">
+    <h3 class="name"><code>clearView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l541"><code>views&#x2F;selectedTagsCompView.js:541</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Clears the input text's value.
+Clears the selected items collection to remove all the selected items.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_disableView" class="method item">
+    <h3 class="name"><code>disableView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l581"><code>views&#x2F;selectedTagsCompView.js:581</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This method is to disable dropdown programmatically.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_enableView" class="method item">
+    <h3 class="name"><code>enableView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l595"><code>views&#x2F;selectedTagsCompView.js:595</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This method is to enable dropdown programmatically.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_focusInput" class="method item">
+    <h3 class="name"><code>focusInput</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l486"><code>views&#x2F;selectedTagsCompView.js:486</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method which focuses on the input text of the dropdown.
+Added a set timeout as the item may not have been rendered in the dom whenever
+focus is immediately called after the render of dropdown.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_getEnteredText" class="method item">
+    <h3 class="name"><code>getEnteredText</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l473"><code>views&#x2F;selectedTagsCompView.js:473</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A function that returns the text that has been entered in the
+input box of the dropdown while searching.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getSelectedItems" class="method item">
+    <h3 class="name"><code>getSelectedItems</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l366"><code>views&#x2F;selectedTagsCompView.js:366</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the selected items in the view.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    <p>An array of the items that are selected.</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_searchTerm" class="method item">
+    <h3 class="name"><code>searchTerm</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>text</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l554"><code>views&#x2F;selectedTagsCompView.js:554</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>This method is to call search functionality programmatically.
+It'll be called from parent view.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">text</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+                    <div class="param-description">
+                        <p>A term represents text.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_setSelectedItems" class="method item">
+    <h3 class="name"><code>setSelectedItems</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>items</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l397"><code>views&#x2F;selectedTagsCompView.js:397</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Updates the selected items based on the items list provided.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">items</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+                    <div class="param-description">
+                        <p>An array of items that should be set as selected.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_updateSelectedItem" class="method item">
+    <h3 class="name"><code>updateSelectedItem</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>selectedItem</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_selectedTagsCompView.js.html#l242"><code>views&#x2F;selectedTagsCompView.js:242</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Updates selected item for the view.
+If view is single select, updates the text box's value as the selected value, else
+adds the selected item to the selected tags view.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">selectedItem</code>
+                        <span class="type">Backbone.Model</span>
+
+
+                    <div class="param-description">
+                        <p>A model representing the item that needs to be selected.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

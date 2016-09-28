@@ -1,5 +1,9 @@
 /**
- * Created by Yashraj.C on 12/4/2015.
+ * Dropdown body item view.
+ * The view for the dropdown item.
+ *
+ * @class DropdownBodyItemView
+ * @constructor
  */
 
 define( [
@@ -55,6 +59,9 @@ define( [
         /**
          * Click handler for the body item.
          * Triggers the itemClick that gets listened by the parent view.
+         *
+         * @method _handleItemClick
+         *
          * @private
          */
         _handleItemClick: function ( event ) {
@@ -69,6 +76,9 @@ define( [
         /**
          * Handler for the action item click.
          * Gets the item config for the clicked action and triggers the event being listened by the parent view.
+         *
+         * @method _handleActionItemClick
+         *
          * @param {Object} event
          *      Event object for the event.
          * @private
@@ -91,6 +101,9 @@ define( [
          * A change attribute handler for the model.
          * Listening to the selected attribute of the model.
          * Updates the view whenever the model gets changed.
+         *
+         * @method _toggleModelSelection
+         *
          * @private
          */
         _toggleModelSelection: function () {
@@ -107,6 +120,9 @@ define( [
          * A change attribute handler for the model.
          * Listening to the visible attribute of the model.
          * Update the view whenever the view gets changed.
+         *
+         * @method _updateVisibility
+         *
          * @private
          */
         _updateVisibility: function () {
@@ -115,6 +131,9 @@ define( [
 
         /**
          * Mouse over event handler for the view to manipulate the hover classes.
+         *
+         * @method _handleMouseOverEvent
+         *
          * @private
          */
         _handleMouseOverEvent: function () {
@@ -123,6 +142,9 @@ define( [
 
         /**
          * Mouse out event handler for the view to manipulate the hover classes.
+         *
+         * @method _handleMouseOutEvent
+         *
          * @private
          */
         _handleMouseOutEvent: function () {
@@ -131,6 +153,9 @@ define( [
 
         /**
          * Adds the hover class to the view.
+         *
+         * @method _addHoverClass
+         *
          * @private
          */
         _addHoverClass: function () {
@@ -139,6 +164,9 @@ define( [
 
         /**
          * Removes the hover class from the view.
+         *
+         * @method _removeHoverClass
+         *
          * @private
          */
         _removeHoverClass: function () {

@@ -1,5 +1,9 @@
 /**
- * Created by Yashraj.C on 12/21/2015.
+ * Dropdown body item's model.
+ *
+ * @class DropdownBodyItemModel
+ *
+ * @constructor
  */
 
 
@@ -12,6 +16,12 @@ define( [
 ], function ( $, _, Backbone ) {
 
     return Backbone.Model.extend( {
+
+        /**
+         * The defaults property that comes along with the backbone models.
+         *
+         * @property defaults
+         */
         defaults: {
             visible: true,
             selected: false

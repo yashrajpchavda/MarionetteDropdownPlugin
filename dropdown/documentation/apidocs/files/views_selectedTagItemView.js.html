@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>collections/selectedTags.js - The Dropdown API</title>
+    <title>views/selectedTagItemView.js - The Dropdown API</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -38,10 +38,21 @@
 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/DropdownBodyItemModel.html">DropdownBodyItemModel</a></li>
+                                <li><a href="../classes/DropdownBodyItemsCollection.html">DropdownBodyItemsCollection</a></li>
+                                <li><a href="../classes/DropdownBodyItemView.html">DropdownBodyItemView</a></li>
+                                <li><a href="../classes/DropdownBodyView.html">DropdownBodyView</a></li>
+                                <li><a href="../classes/DropdownHeaderView.html">DropdownHeaderView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemModel.html">DropdownSelectedTagItemModel</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemsCollection.html">DropdownSelectedTagItemsCollection</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemView.html">DropdownSelectedTagItemView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagsView.html">DropdownSelectedTagsView</a></li>
+                                <li><a href="../classes/DropdownView.html">DropdownView</a></li>
                             </ul>
 
 
                             <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Dropdown.html">Dropdown</a></li>
                             </ul>
                         </div>
                     </div>
@@ -75,56 +86,69 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1 class="file-heading">File: collections/selectedTags.js</h1>
+<h1 class="file-heading">File: views/selectedTagItemView.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /**
- * Created by Yashraj.C on 1/1/2016.
+ * This view renders the individual item in the selected tags collection.
+ *
+ * @class DropdownSelectedTagItemView
+ *
+ * @constructor
  */
 
 define( [
+    &#x27;jquery&#x27;,
     &#x27;underscore&#x27;,
     &#x27;backbone&#x27;,
-    &#x27;modules/dropdown2/models/selectedTag&#x27;
-], function ( _, Backbone, SelectedTagModel ) {
+    &#x27;marionette&#x27;,
+    &#x27;tpl!modules/dropdown2/templates/selectedTagItem.tmpl&#x27;
+], function ( $, _, Backbone, Marionette, SelectedTagItemTemplate ) {
 
-    return Backbone.Collection.extend( {
-        model: SelectedTagModel,
-        comparator: &#x27;id&#x27;,
+    return Marionette.ItemView.extend( {
 
-        addItemToCollection: function ( itemText ) {
+        template: SelectedTagItemTemplate,
 
-            var existingItem = this.findWhere( {
-                text: itemText
-            } );
+        className: &#x27;tagItem&#x27;,
 
-            if ( !existingItem ) {
-
-                this.add( {
-                    text: itemText,
-                    id: undefined
-                } );
-
-            }
-
+        ui: {
+            removeIco: &#x27;.removeIco&#x27;
         },
 
-        getSerializedItems: function () {
+        events: {
+            &#x27;click @ui.removeIco&#x27;: &#x27;_handleRemoveIconClick&#x27;
+        },
 
-            var items = [];
+        /**
+         * Click handler for the remove icon to remove the tag that is clicked.
+         *
+         * @method _handleRemoveIconClick
+         *
+         * @private
+         */
+        _handleRemoveIconClick: function () {
+            this.trigger( &#x27;removeTag&#x27; );
+        },
 
-            this.each( function ( item ) {
-                items.push( {
-                    id: item.get( &#x27;id&#x27; ),
-                    text: item.get( &#x27;text&#x27; ),
-                    rawObject: item.get( &#x27;rawObject&#x27; )
-                } );
-            } );
+        /**
+         * A method to disable the view.
+         *
+         * @method disableView
+         */
+        disableView : function () {
+            this.undelegateEvents();
+        },
 
-            return items;
-
+        /**
+         * A method to enable the view.
+         *
+         * @method enableView
+         */
+        enableView : function () {
+            this.delegateEvents();
         }
+
     } );
 
 } );

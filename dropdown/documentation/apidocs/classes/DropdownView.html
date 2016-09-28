@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DropdownView - The Dropdown API</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../assets/css/logo.png" title="The Dropdown API" width="117" height="52"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/DropdownBodyItemModel.html">DropdownBodyItemModel</a></li>
+                                <li><a href="../classes/DropdownBodyItemsCollection.html">DropdownBodyItemsCollection</a></li>
+                                <li><a href="../classes/DropdownBodyItemView.html">DropdownBodyItemView</a></li>
+                                <li><a href="../classes/DropdownBodyView.html">DropdownBodyView</a></li>
+                                <li><a href="../classes/DropdownHeaderView.html">DropdownHeaderView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemModel.html">DropdownSelectedTagItemModel</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemsCollection.html">DropdownSelectedTagItemsCollection</a></li>
+                                <li><a href="../classes/DropdownSelectedTagItemView.html">DropdownSelectedTagItemView</a></li>
+                                <li><a href="../classes/DropdownSelectedTagsView.html">DropdownSelectedTagsView</a></li>
+                                <li><a href="../classes/DropdownView.html">DropdownView</a></li>
+                            </ul>
+
+
+                            <ul id="api-modules" class="apis modules">
+                                <li><a href="../modules/Dropdown.html">Dropdown</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+
+                </div>
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>DropdownView Class</h1>
+<div class="box meta">
+
+        <div class="extends">
+            Extends Marionette.LayoutView
+        </div>
+
+        <div class="foundat">
+            Defined in: <a href="../files/views_ddContainerLayoutView.js.html#l8"><code>views&#x2F;ddContainerLayoutView.js:8</code></a>
+        </div>
+
+            Module: <a href="../modules/Dropdown.html">Dropdown</a>
+
+</div>
+
+
+<div class="box intro">
+    <p>This is the main base view for the dropdown component. If you want to use this plugin, following is the list of items that you
+might be interested in knowing.</p>
+<ul>
+<li>
+<p>You need to copy the files into your application's module directory and require <code>ddContainerLayout</code> file from the
+dropdown module and create an instance of this view.</p>
+</li>
+<li>
+<p>You need to attach the <code>dd2.css</code> provided with this codebase into your application. Plugin uses some of the font-awesome
+icons as well, hence please make sure you add that too.</p>
+</li>
+<li>
+<p>The possible configurations that can be passed to the dropdown view, are available in the documentation of the
+<code><a href="../classes/DropdownView.html#method_initialize" class="crosslink">initialize</a></code> method of the same class.</p>
+</li>
+<li>
+<p>A dropdown can be created as:</p>
+<pre class="code prettyprint"><code>var dropdownViewInstance = new DropdownView( {
+    ...
+    config
+    ...
+} );
+</code></pre>
+</li>
+<li>
+<p>The created dropdown view can be either shown into a region,</p>
+<pre class="code prettyprint"><code>view.getRegion( 'dropdown' ).show( dropdownViewInstance );
+</code></pre>
+</li>
+<li>
+<p>or if you want to display it inside any existing block container which is present in the DOM, you can just do,</p>
+<pre class="code prettyprint"><code>domElement.html( dropdownViewInstance.render().trigger( 'attach' ).$el )
+</code></pre>
+</li>
+<li>
+<p>We need to trigger the attach in order to do some processing that happens at the time when the view is attached
+to the DOM.</p>
+</li>
+<li>
+<p>The dropdown view has two main regions, <strong>header</strong> and <strong>body</strong>. The <code><a href="../classes/DropdownHeaderView.html" class="crosslink">DropdownHeaderView</a></code> and
+<code><a href="../classes/DropdownBodyView.html" class="crosslink">DropdownBodyView</a></code> are being rendered in respective regions and are available as
+<code><a href="../classes/DropdownView.html#property_headerView" class="crosslink">headerView</a></code> and <code><a href="../classes/DropdownView.html#property_ddBodyView" class="crosslink">ddBodyView</a></code>
+properties on <code>dropdownViewInstance</code>.</p>
+</li>
+</ul>
+<h5>The example with all the available configurations:</h5>
+<p>Not all of them can be used together, the documentation available at <code><a href="../classes/DropdownView.html#method_initialize" class="crosslink">initialize</a></code>
+gives a better idea about all of them.</p>
+<pre class="code prettyprint"><code>var dropdownViewInstance = new DropdownView( {
+
+    placeHolder: 'Please Select',
+
+    multiSelect: false,
+
+    searchTriggerDelay: 600,
+
+    showClearIcon: false,
+
+    data: [ {
+        id: 1,
+        text: 'item 1',
+        rawObject: {
+            originalId: 1,
+            originalText: 'test',
+            someMetaData: {
+            }
+        }
+    }, {
+        id: 2,
+        text: 'item 2',
+        rawObject: {
+            originalId: 2,
+            originalText: 'test',
+            someMetaData: {
+            }
+        }
+    } ],
+
+    ajax: {
+        url: 'urlForTheAjax',
+        type: 'get|post',
+        triggerChars: 2,
+        requestDataFormatter: function( text ) {
+            return {
+                key: text
+            };
+        },
+        responseDataFormatter: function( responseFromServer ) {
+            return [];
+        }
+    },
+
+    noDataMessage: 'No Data Found',
+
+    allowNew: false,
+
+    allowNewText: 'Add as New Item',
+
+    footer: [ {
+        itemKey: 'btn1',
+        html: 'Footer Item1',
+        footerClick: function( dropdownViewInstance ) {
+
+        }
+    }, {
+        itemKey: 'btn2',
+        html: 'Footer Item2',
+        footerClick: function( dropdownViewInstance ) {
+
+        }
+    }, ... ],
+
+    selectedItems: [ {
+    } ],
+
+    callbacks: {
+        beforeNewItemAdd: function( itemText ) {
+
+        },
+        onKeyUp: function( itemText ) {
+
+        }
+    },
+
+    onItemSelect: function( dropdownViewInstance ) {
+
+    }
+
+} );</code></pre>
+
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_DropdownView" class="method item">
+    <h3 class="name"><code>DropdownView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l8"><code>views&#x2F;ddContainerLayoutView.js:8</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+
+    </div>
+
+
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                            <li class="index-item method private">
+                                <a href="#method__deselectItem">_deselectItem</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleAddNewItem">_handleAddNewItem</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleBodyItemClick">_handleBodyItemClick</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleClearSingleSelect">_handleClearSingleSelect</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleFooterClick">_handleFooterClick</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleTextSearch">_handleTextSearch</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleToggleList">_handleToggleList</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__handleTraverseList">_handleTraverseList</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__initDefaultConfig">_initDefaultConfig</a>
+
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__selectItem">_selectItem</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_clearView">clearView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_disableView">disableView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_enableView">enableView</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_focusInput">focusInput</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getSearchedTerm">getSearchedTerm</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getSelectedItems">getSelectedItems</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_hideOptionsList">hideOptionsList</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_initialize">initialize</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_isDisabled">isDisabled</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_resetDataSource">resetDataSource</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_searchTerm">searchTerm</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_setSelectedItems">setSelectedItems</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                            <li class="index-item property">
+                                <a href="#property_config">config</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_ddBodyView">ddBodyView</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_eventTriggers">eventTriggers</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_headerView">headerView</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method__deselectItem" class="method item private">
+    <h3 class="name"><code>_deselectItem</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>removedModel</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l573"><code>views&#x2F;ddContainerLayoutView.js:573</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the <code>deselectItem</code> triggered by the headerView. Invokes bodyViews method to deselect the item
+that is passed to the method.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">removedModel</code>
+                        <span class="type">Model</span>
+
+
+                    <div class="param-description">
+                        <p>A model representing the item that should be deselected.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleAddNewItem" class="method item private">
+    <h3 class="name"><code>_handleAddNewItem</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l543"><code>views&#x2F;ddContainerLayoutView.js:543</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the <code>addNewItem</code> triggered by the bodyView. Invokes the headerview's method for addition of new
+item.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__handleBodyItemClick" class="method item private">
+    <h3 class="name"><code>_handleBodyItemClick</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>clickedItemView</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l513"><code>views&#x2F;ddContainerLayoutView.js:513</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the <code>bodyItemClick</code> triggered by the bodyView. Updates the header view to reflect the selection.
+Invokes the <code>config.onItemSelect</code> method if specified.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">clickedItemView</code>
+                        <span class="type">View</span>
+
+
+                    <div class="param-description">
+                        <p>A view representing the item that was clicked.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleClearSingleSelect" class="method item private">
+    <h3 class="name"><code>_handleClearSingleSelect</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l586"><code>views&#x2F;ddContainerLayoutView.js:586</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the clearing single select. It'll invoke the passed <code>config.onClearSelectedItem</code> handler
+if there is any.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__handleFooterClick" class="method item private">
+    <h3 class="name"><code>_handleFooterClick</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l555"><code>views&#x2F;ddContainerLayoutView.js:555</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handles the <code>footerClick</code> triggered by the dropdown body view.
+Invokes the footer item click if specified in the <code>config</code>.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__handleTextSearch" class="method item private">
+    <h3 class="name"><code>_handleTextSearch</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>text</code>
+                </li>
+                <li class="arg">
+                        <code>selectedItems</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l486"><code>views&#x2F;ddContainerLayoutView.js:486</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the <code>textSearch</code> event triggered by the headerView. Invokes the respective method of
+the body view so that the items displayed in the body view can be filtered based on the text that has been
+passed.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">text</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+                    <div class="param-description">
+                        <p>A string to search in the list.</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">selectedItems</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+                    <div class="param-description">
+                        <p>Whenever ajax config is defined, this array is used to show the returned items
+from the server as selected.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleToggleList" class="method item private">
+    <h3 class="name"><code>_handleToggleList</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>forceToggle</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l387"><code>views&#x2F;ddContainerLayoutView.js:387</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the toggleOptionsList triggered by the headerView.
+Handles the show / hide for the dropdown body view.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">forceToggle</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+
+
+                    <div class="param-description">
+                        <p>If passed as <code>true</code> the dropdown will be forcefully toggled.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__handleTraverseList" class="method item private">
+    <h3 class="name"><code>_handleTraverseList</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>keyCode</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l501"><code>views&#x2F;ddContainerLayoutView.js:501</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the <code>traverseListOrSelectItem</code> triggered by the headerView. Invokes body view's function to
+traverse through the list.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">keyCode</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+
+
+                    <div class="param-description">
+                        <p>A number indicating the key pressed.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method__initDefaultConfig" class="method item private">
+    <h3 class="name"><code>_initDefaultConfig</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l431"><code>views&#x2F;ddContainerLayoutView.js:431</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Initializes the default configuration for the dropdown.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method__selectItem" class="method item private">
+    <h3 class="name"><code>_selectItem</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>model</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+        <span class="flag private">private</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l599"><code>views&#x2F;ddContainerLayoutView.js:599</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the selectItem triggered by the headerView. Invokes the body view's method passing the model.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">model</code>
+                        <span class="type">Model</span>
+
+
+                    <div class="param-description">
+                        <p>A model representing the item that should be deselected.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_clearView" class="method item">
+    <h3 class="name"><code>clearView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l530"><code>views&#x2F;ddContainerLayoutView.js:530</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Clears the headerView and bodyView. Removes all the selections that are done.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_disableView" class="method item">
+    <h3 class="name"><code>disableView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l634"><code>views&#x2F;ddContainerLayoutView.js:634</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method to disabled the dropdown view. Disabled the body and header views respectively.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_enableView" class="method item">
+    <h3 class="name"><code>enableView</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l655"><code>views&#x2F;ddContainerLayoutView.js:655</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method to enable a dropdown view. Invokes methods to enable the header and body views.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_focusInput" class="method item">
+    <h3 class="name"><code>focusInput</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l675"><code>views&#x2F;ddContainerLayoutView.js:675</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method to focus on the input text of the dropdown.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_getSearchedTerm" class="method item">
+    <h3 class="name"><code>getSearchedTerm</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l477"><code>views&#x2F;ddContainerLayoutView.js:477</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A function that returns the text that has been entered in the input box of the dropdown while searching.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>:
+                    <p>The text that has been typed by the user in the searchbox.</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_getSelectedItems" class="method item">
+    <h3 class="name"><code>getSelectedItems</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l452"><code>views&#x2F;ddContainerLayoutView.js:452</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Returns the selected item(s) for the dropdown.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>:
+                    <p>Method returns an array for single select dropdown as well - with just one item.
+The item in the returned array will have following properties:</p>
+<ul>
+<li><code>id</code> the unique id of the dropdown item</li>
+<li><code>text</code> the text of the dropdown</li>
+<li><code>rawObject</code> {Object} the raw object that was passed to the item - might contain some meta-data about
+the item.</li>
+</ul>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_hideOptionsList" class="method item">
+    <h3 class="name"><code>hideOptionsList</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l613"><code>views&#x2F;ddContainerLayoutView.js:613</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Handler for the hideOptionsList triggered by the headerView. Invokes the body view's method to perform
+action.</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_initialize" class="method item">
+    <h3 class="name"><code>initialize</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>config</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l188"><code>views&#x2F;ddContainerLayoutView.js:188</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Whenever you create an instance of the <code>DropdownView</code>, by default Marionette framework calls the <code>initialize</code>
+method of the view and passes whatever you have passed to the <code>DropdownView</code> constructor to the <code>initialize</code>
+method. These are the possible configurations that we can pass whenever we create an instance of the dropdown.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">config</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+                    <div class="param-description">
+                        <p>A config object</p>
+
+                    </div>
+
+                        <ul class="params-list">
+                            <li class="param">
+                                    <code class="param-name optional">[placeholder=&#x27;Please Select&#x27;]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>String that gets used as a placeholder for the dropdown.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[multiSelect=false]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>Configuring dropdown as multi-select would let the user select
+multiple items from the list. If not passed as <code>true</code> then the dropdown would act like a normal
+dropdown with just single select facility and would let the user click on the it to open the list of options.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[searchTriggerDelay=600]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>Number of milliseconds that the delay would be added before
+the search inside the list of items would be triggered. If the ajax is configured the request would
+be sent only after the specified milliseconds.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[showClearIcon=false]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>Shows the clear icon next to the textbox of the dropdown. This
+clear icon lets the user clear the content of the dropdown view's textbox. It should only be used when
+the view is configured to be searchable by <code>searchable: true</code>.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[data=[]]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>This config is useful if you want to pass a local pre-populated data
+source to the dropdown plugin. The dropdown will have the items that you speicify in the <code>data</code> array.
+The format of the items in the array should be:</p>
+<pre><code>{
+    id: &quot;&quot;,
+    text: &quot;&quot;,
+    rawObject: { }
+}
+</code></pre>
+<ul>
+<li><code>id</code> param can be either <code>String</code> or <code>Number</code> which identifies the item uniquely.</li>
+<li><code>text</code> param can be either <code>String</code> or <code>Number</code> that would be displayed to the user.</li>
+<li><code>rawObject</code> param is an object. It gets returned as a part of selected item whenever we want the
+selected items of the dropdown through <code>getSelectedItems()</code>. The purpose of this object is to pass
+extra metadata to the items of the dropdown which we might want to use later on while operating on the
+selected items.</li>
+</ul>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name">ajax</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+                                <div class="param-description">
+                                    <p>Option is useful when the data source of the dropdown is remote and you want the
+items of the dropdown to be loaded as an when user types the characters. The options of the
+<code>ajax</code> config are defined below:</p>
+
+                                </div>
+
+                                    <ul class="params-list">
+                                        <li class="param">
+                                                <code class="param-name">url</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+                                            <div class="param-description">
+                                                the url where the ajax request should be made to fetch the data
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name">type</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+                                            <div class="param-description">
+                                                the type of the request to be made <code>post</code> / <code>get</code>
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name optional">[triggerChars=2]</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                                                <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                            <div class="param-description">
+                                                the number indicating the minimum characters required by the user to
+     be typed to make an ajax call for the data.
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name">requestDataFormatter</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+                                            <div class="param-description">
+                                                The function that gets invoked before making an ajax call
+      to the server. The returned value from this function gets passed as request data to the server for
+      the request. The arguments that gets passed to this function are:
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name">requestDataFormatter.text</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+                                            <div class="param-description">
+                                                It is the searched text that has been entered by the user.
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name">responseDataFormatter</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+                                            <div class="param-description">
+                                                The function that gets invoked before setting the data
+      for the dropdown that is sent by the server as a response of the dropdown request. You can use this function to process
+      the data that is being sent by the server to accommodate into the dropdown format. This function must
+      return an array of objects which will be shown as items in the list. And this objects must be in the same
+      format as <code>data</code>.
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name">responseDataFormatter.response</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+                                            <div class="param-description">
+                                                The response object that is sent by the server.
+                                            </div>
+                                        </li>
+                                    </ul>
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[noDataMessage=&#x27;No Data Found&#x27;]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>A string that would be displayed whenever user
+searches for an item and that item is not present in the list.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[allowNew=false]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>If you want to allow the user to type in and add new items - which
+are not present in the list, pass this option as <code>true</code>. This config is only useful with <code>multiSelect: true</code>.
+If passed as <code>true</code> user would get an option to add new items in the list for all those searches that
+did not match any item.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[allowNewText=&#x27;Add as New Item&#x27;]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>If <code>allowNew</code> is set as <code>true</code> this text would be
+displayed to user an an option in the list, which user can click on to add the new item in. Executes
+the <code>beforeNewItemAdd</code> callback defined under <code>callbacks</code> config, and adds the item only if the
+callback returns <code>true</code>.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[footer=null]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>The list of items that should be shown as footer items to the list - like Open
+Codebook option - in ezCAC working page. The item in the list should be in the format of the
+following object:</p>
+<pre><code class="language-javascript">    {
+        itemKey: &quot;&quot;,
+        html: &quot;&quot;,
+        footerClick: function( dropdownViewInstance ) { }
+    }
+</code></pre>
+<ul>
+<li><code>itemKey</code> should be a <code>String</code> or <code>Number</code> which uniquely identifies the item.</li>
+<li><code>html</code> is the <code>String</code> that gets rendered in the DOM to display the footer item.</li>
+<li><code>footerClick</code> is the function that gets invoked whenever the footer item is clicked. The callback gets
+executed with one parameter - that is the instance of the dropdown view.</li>
+</ul>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[selectedItems=null]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>The list of items that should be selected by default. It should
+be of same format as <code>data</code> passed to the dropdown view.</p>
+
+                                </div>
+
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[onItemSelect=null]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>The callback function that gets executed whenever user selects
+an item from the dropdown list. The method gets called with the following argument.</p>
+
+                                </div>
+
+                                    <ul class="params-list">
+                                        <li class="param">
+                                                <code class="param-name">view</code>
+                                                <span class="type"><a href="../classes/DropdownView.html" class="crosslink">DropdownView</a></span>
+
+                                            <div class="param-description">
+                                                The instance of the dropdown view.
+                                            </div>
+                                        </li>
+                                    </ul>
+                            </li>
+                            <li class="param">
+                                    <code class="param-name optional">[callbacks]</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+                                    <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                <div class="param-description">
+                                    <p>The callbacks that can be passed to the view. There are two callbacks that
+we can pass.</p>
+
+                                </div>
+
+                                    <ul class="params-list">
+                                        <li class="param">
+                                                <code class="param-name optional">[beforeNewItemAdd]</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                                <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                            <div class="param-description">
+                                                The callback that gets fired for the multiSelect dropdown
+     with <code>allowNew</code> set as <code>true</code>. Whenever user tries to add a new item, if specified, then this callback gets executed
+     with the entered text as an argument. The newly item would only be added if the callback
+     returns <code>true</code>. The purpose of this is to perform any necessary validation before adding new item. The function
+     receives the following as its arguments.
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name">beforeNewItemAdd.itemText</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+                                            <div class="param-description">
+                                                A string indicating the item text that has been
+     entered by the user.
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name optional">[onKeyUp]</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                                <span class="flag optional" title="This parameter is optional.">optional</span>
+
+                                            <div class="param-description">
+                                                The callback that gets executed whenever user types something in
+     the dropdown. Useful to perform any logic as and when user types in the input box. It receives the following
+     arguments.
+                                            </div>
+                                        </li>
+                                        <li class="param">
+                                                <code class="param-name">onKeyUp.itemText</code>
+                                                <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+                                            <div class="param-description">
+                                                The text that has been entered by the user.
+                                            </div>
+                                        </li>
+                                    </ul>
+                            </li>
+                        </ul>
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_isDisabled" class="method item">
+    <h3 class="name"><code>isDisabled</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> | exports.constants.isDisable</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l623"><code>views&#x2F;ddContainerLayoutView.js:623</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method which checks whether the dropdown view is disabled or not.</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" class="crosslink external" target="_blank">Boolean</a> | exports.constants.isDisable</span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_resetDataSource" class="method item">
+    <h3 class="name"><code>resetDataSource</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l697"><code>views&#x2F;ddContainerLayoutView.js:697</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>A method to reset the data source of the dropdown with the newly passed data source. Resets the collection
+of the items. It will not bring any impact on the header view, hence the selected item(s) will stay as is,
+even if they don't exist in the new data source.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+                    <div class="param-description">
+                        <p>The list of items that should be displayed after reset. This data source will have to be of the same
+format as we have in the <code>data</code> in the coniguration of <code>initialize</code> method.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_searchTerm" class="method item">
+    <h3 class="name"><code>searchTerm</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>term</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l684"><code>views&#x2F;ddContainerLayoutView.js:684</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>To invoke the search functionality of the dropdown through code.
+It'll be used in ajax support mostly.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">term</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+
+
+                    <div class="param-description">
+                        <p>A term represents text.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_setSelectedItems" class="method item">
+    <h3 class="name"><code>setSelectedItems</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>items</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l467"><code>views&#x2F;ddContainerLayoutView.js:467</code></a>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>Sets the items specified as selected items in the dropdown view.</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">items</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
+
+
+                    <div class="param-description">
+                        <p>An array of items that should be set as selected. It should be of same format as <code>data</code>.</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_config" class="property item">
+    <h3 class="name"><code>config</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l439"><code>views&#x2F;ddContainerLayoutView.js:439</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>An instance variable of the view which holds all the configuration settings that were passed at the time
+of initialization as well as some private configurations set by the view.</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_ddBodyView" class="property item">
+    <h3 class="name"><code>ddBodyView</code></h3>
+    <span class="type"><a href="../classes/DropdownBodyView.html" class="crosslink">DropdownBodyView</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l355"><code>views&#x2F;ddContainerLayoutView.js:355</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>An instance of the dropdown header view rendered inside the <strong>body</strong> region.</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_eventTriggers" class="property item">
+    <h3 class="name"><code>eventTriggers</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l155"><code>views&#x2F;ddContainerLayoutView.js:155</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>Event triggers object that holds the keys for the events that are triggered within the view.
+The same object gets passed to the header and body views and their children, just to have all the event
+names available at just one place to avoid typos while development.</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_headerView" class="property item">
+    <h3 class="name"><code>headerView</code></h3>
+    <span class="type"><a href="../classes/DropdownHeaderView.html" class="crosslink">DropdownHeaderView</a></span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/views_ddContainerLayoutView.js.html#l339"><code>views&#x2F;ddContainerLayoutView.js:339</code></a>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>An instance of the dropdown header view rendered inside the <strong>header</strong> region.</p>
+
+    </div>
+
+
+
+</div>
+            </div>
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
